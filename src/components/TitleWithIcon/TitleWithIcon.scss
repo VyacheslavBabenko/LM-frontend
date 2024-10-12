@@ -1,0 +1,20 @@
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-left: 0.625rem;
+  margin: 1rem 0;
+
+  &__image {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__title {
+    color: #000;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}

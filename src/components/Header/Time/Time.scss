@@ -1,0 +1,18 @@
+.time-desktop {
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: baseline;
+
+  &__time {
+    min-width: 4.125rem;
+  }
+
+  &__timezone {
+    margin-left: 0.5rem;
+    font-weight: 700;
+    font-size: 0.6875rem;
+    color: $text-grey;
+  }
+}

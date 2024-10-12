@@ -1,0 +1,48 @@
+.side-menu-block-desktop {
+  &__header {
+    margin-bottom: 0.3125rem;
+    padding: 0.625rem;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: $text-grey;
+  }
+
+  &__arrow {
+    margin-left: auto;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: rotate(0);
+  }
+
+  &_isOpen &__arrow {
+    transform: rotate(180deg);
+  }
+
+  &__line {
+    // margin: 0.625rem;
+    height: 1px;
+    background: $bg-third;
+  }
+
+  &__item {
+    margin-bottom: 0.3125rem;
+  }
+
+  &__list {
+    max-height: 0;
+    transition: all 0.15s ease-in-out;
+    overflow: hidden;
+
+    &_isOpen {
+      max-height: 25rem;
+    }
+  }
+}

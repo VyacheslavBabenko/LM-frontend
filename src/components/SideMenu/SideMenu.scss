@@ -1,0 +1,15 @@
+.side-menu-desktop {
+	height: 100%;
+	padding: 0.9375rem;
+	background: $bg-main;
+	width: 4.625rem;
+	transition: width 0.15s ease-in-out;
+
+	&_open {
+		width: 17.5rem;
+	}
+
+	&__item {
+		margin-bottom: 0.3125rem;
+	}
+}

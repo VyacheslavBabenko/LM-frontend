@@ -1,0 +1,116 @@
+.transfer-lead {
+	&__block {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__items {
+		flex-grow: 2;
+		gap: 1.25rem;
+		padding: 2.5rem;
+		background: #fff;
+		border-radius: 0.625rem;
+
+		&_accountData {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+		}
+
+		&_personalInfo {
+			display: flex;
+		}
+
+		&_accountSettings {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	&__item {
+		font-weight: 600;
+		font-size: 0.75rem;
+		color: $text-grey;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__item-name {
+		margin-bottom: 0.3125rem;
+	}
+
+	&__item-field {
+		flex-grow: 2;
+		height: 3rem;
+
+		&_type {
+			&_withIcon {
+				position: relative;
+
+				input {
+					padding-right: 2rem;
+				}
+			}
+		}
+
+		&__checkbox {
+			width: 3rem;
+			height: 3rem;
+		}
+	}
+
+	&__item-checkbox {
+		display: flex;
+		padding: 0.75rem 0.625rem 0.75rem 0.9375rem;
+		justify-content: space-between;
+		align-items: center;
+		border-radius: 0.3125rem;
+		border: 1px solid #cfdae9;
+		margin-top: 1.31rem;
+
+		&-name {
+			font-weight: 600;
+			font-size: 0.85rem;
+		}
+
+		&-field {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+
+	&__role-cell {
+		position: absolute;
+		right: 0.9375rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&__row {
+		display: grid;
+		grid-template-columns: 0.4fr 0.6fr;
+		gap: 0.9375rem;
+	}
+
+	&__bottom {
+		gap: 1.25rem;
+		margin-top: 0.94rem;
+		padding: 2.5rem;
+		background: #fff;
+		border-radius: 0.625rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		button {
+			&:first-child {
+				width: 9.375rem;
+				min-width: 9.375rem;
+			}
+			&:last-child {
+				width: 15rem;
+				min-width: 15rem;
+			}
+		}
+	}
+}

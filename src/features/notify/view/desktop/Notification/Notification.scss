@@ -1,0 +1,90 @@
+.notification-desktop {
+  z-index: 1005;
+  width: 100%;
+  min-height: 2.875rem;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1.25rem auto 0.8125rem;
+  grid-gap: 0 0.625rem;
+  margin-top: 1rem;
+  padding: 0.8125rem 0.8125rem;
+  position: relative;
+  animation: 0.7s ease init;
+  background: $bg-main;
+  color: $text-main;
+  border: 1px solid $bg-third;
+  border-radius: 0.3125rem;
+
+  &_type {
+    &_default {
+    }
+
+    &_error {
+    }
+
+    &_success {
+    }
+  }
+
+  &_deleted {
+    animation: 0.7s ease delete;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+  }
+
+  &__cross {
+    cursor: pointer;
+    // right: 0 #{'/* rtl: 0 */'};
+    // top: 0.8125rem #{'/* rtl: 0.8125rem */'};
+    // left: auto #{'/* rtl: auto */'};
+    // bottom: auto #{'/* rtl: auto */'};
+    // position: absolute;
+    width: 0.8125rem;
+    height: 0.8125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.2188rem 0 0 0;
+  }
+
+  &__text {
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 0;
+    text-align: left;
+    word-break: break-word;
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  @keyframes init {
+    0% {
+      opacity: 0;
+      transform: translateX(10rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes delete {
+    0% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0;
+      transform: translateX(120%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(200%);
+    }
+  }
+}

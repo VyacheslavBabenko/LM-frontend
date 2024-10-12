@@ -1,0 +1,116 @@
+.button-desktop {
+	user-select: none;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 0.9375rem;
+	border: none;
+	outline: none;
+	user-select: none;
+	font-weight: 800;
+	font-size: 0.875rem;
+	color: white;
+	font-family: "Manrope", sans-serif;
+	text-align: center;
+	white-space: nowrap;
+
+	&:active {
+		transform: translateY(0.125rem);
+	}
+
+	&_borderRadius {
+		&_5 {
+			border-radius: 0.3125rem;
+		}
+		&_10 {
+			border-radius: 0.625rem;
+		}
+	}
+
+	&_color {
+		&_default {
+			background: #0094ff;
+			box-shadow: 0rem 0.375rem 0.9375rem rgba(0, 148, 255, 0.3);
+			color: #ffffff;
+		}
+		&_hollow {
+			background: transparent;
+			border: 0.0625rem solid #e91548;
+			color: #e91548;
+		}
+		&_hollow-blue {
+			background: transparent;
+			border: 0.0625rem solid #0094ff;
+			color: #0094ff;
+		}
+		&_hollow-red {
+			background: transparent;
+			border: 0.0625rem solid #e91548;
+			color: #e91548;
+		}
+		&_blue-opacity {
+			background: rgba(0, 148, 255, 0.1);
+			color: #0094ff;
+		}
+		&_red-opacity {
+			background: rgba(234, 108, 115, 0.1);
+			color: #ea6c73;
+		}
+		&_red {
+			background: #e91548;
+			box-shadow: 0px 6px 15px 0px #e915484d;
+			color: #fff;
+		}
+		&_green {
+			background: #43ac6a;
+		}
+	}
+
+	&_size {
+		&_default {
+			height: 3rem;
+		}
+
+		&_small {
+			height: 2.5rem;
+		}
+
+		&_verySmall {
+			height: 2.25rem;
+		}
+	}
+
+	&:hover#{&}_color {
+		&_default {
+			background: #00c2ff;
+			box-shadow: 0px 6px 15px rgba(0, 148, 255, 0.3);
+		}
+		&_hollow {
+			background: #e91548;
+			color: #ffffff;
+		}
+		// &_green {
+		//   background: #1bb184;
+		// }
+	}
+
+	&_disabled#{&}_color {
+		&_default {
+			background: rgba(172, 177, 190, 0.2);
+			color: rgba(4, 12, 50, 0.25);
+			box-shadow: none;
+			cursor: not-allowed;
+		}
+		&_green {
+			background: rgba(172, 177, 190, 0.2);
+			color: rgba(4, 12, 50, 0.25);
+		}
+	}
+
+	&_disabled#{&}:active {
+		transform: translateY(0px);
+	}
+}

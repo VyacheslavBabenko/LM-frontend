@@ -1,0 +1,100 @@
+.header-desktop {
+  padding: 0.8125rem 1.25rem;
+  display: flex;
+  align-items: center;
+  background: $bg-main;
+  color: $text-main;
+  font-weight: 700;
+
+  &__burger-wrapper {
+    margin-right: 1.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.625rem;
+    background: $bg-second;
+    cursor: pointer;
+  }
+
+  &__burger {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+  }
+
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  &__logo {
+    margin-right: 0.5rem;
+    display: block;
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  &__info {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    padding: 0 1.5625rem 0 1.25rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 1px;
+      height: 1.375rem;
+      background: $bg-third;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__item-icon {
+    display: block;
+    margin-right: 0.625rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__item-label {
+    color: $text-grey;
+    font-size: 0.75rem;
+  }
+
+  &__item-value {
+    font-size: 1rem;
+    color: $text-accent;
+  }
+
+  &__item-currency {
+    margin-left: 2px;
+    font-size: 0.75rem;
+    color: $text-main;
+  }
+
+  &__item-login {
+    font-size: 0.875rem;
+    color: $text-main;
+  }
+
+  &__logout {
+    margin-left: 0.625rem;
+  }
+
+  &__lang {
+    padding-left: 0.625rem;
+  }
+}

@@ -1,0 +1,35 @@
+.check-box-desktop {
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  flex-shrink: 0;
+  transition: all 0.3s ease-in;
+  border-radius: 25%;
+  position: relative;
+  border: 1px solid #cfdae9;
+
+  &_checked {
+    border: 1px solid #0094ff;
+    background: #0094ff;
+  }
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+  }
+
+  &__check {
+    width: calc(40% + 2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

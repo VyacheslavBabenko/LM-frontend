@@ -1,0 +1,25 @@
+.side-menu-item-desktop {
+  padding: 0.625rem;
+  background: $bg-main;
+  color: $text-main;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s ease-in-out;
+
+  &_active {
+    background: $text-accent;
+    color: #FFFFFF;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+  }
+
+  &_open &__icon {
+    margin-right: 0.625rem;
+  }
+}

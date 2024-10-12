@@ -1,0 +1,20 @@
+.select-date-desktop {
+  display: flex;
+  gap: 0.625rem;
+
+  &__label {
+    margin-bottom: 0.3125rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8C9EB7;
+  }
+
+  &__month {
+    height: 3rem;
+    min-width: 16rem;
+  }
+
+  &__year {
+    height: 3rem;
+  }
+}

@@ -1,0 +1,60 @@
+.input-date-clearable-mobile {
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+
+  & .react-datepicker-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  & .react-datepicker__input-container {
+    width: 100%;
+    height: 100%;
+  }
+  & .react-datepicker__triangle {
+    display: none;
+  }
+  & .react-datepicker__close-icon {
+    right: 0.625rem;
+    padding: 0;
+    opacity: 0;
+
+    &::after {
+      width: 0.9375rem !important;
+      height: 0.9375rem !important;
+    }
+  }
+
+  &__custom-date-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.625rem 0 0.75rem;
+    background: #23262c;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+
+    &-cross {
+      width: 0.9375rem;
+      height: 0.9375rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &-value {
+      margin-right: auto;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1rem;
+      color: white;
+    }
+  }
+
+  &_valid &__custom-date-input {
+    /* border: 1px solid green; */
+  }
+}

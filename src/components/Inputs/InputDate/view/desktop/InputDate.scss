@@ -1,0 +1,73 @@
+.input-date-desktop {
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+
+  & .react-datepicker {
+    width: max-content;
+  }
+
+  & .react-datepicker-wrapper {
+    min-width: 100%;
+    height: 100%;
+  }
+  // & .react-datepicker__input-container {
+  //   width: 100%;
+  //   height: 100%;
+  // }
+  // & .react-datepicker__triangle {
+  //   display: none;
+  // }
+
+  &__custom-date-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.3125rem;
+    // border: 1px solid #4e5667;
+    border-radius: 0.3125rem;
+
+    &-calendar {
+      width: 1.5rem;
+      min-width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.3125rem 0 0;
+    }
+    &-value {
+      margin-right: auto;
+      font-weight: 600;
+      font-size: 0.875rem;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: #000;
+      white-space: nowrap;
+
+      &_isPlaceholder {
+        color: var(--text-grey);
+      }
+    }
+    &-arrow {
+      width: 1.875rem;
+      min-width: 1.875rem;
+      height: 1.875rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &_valid &__custom-date-input {
+    /* border: 1px solid green; */
+  }
+}

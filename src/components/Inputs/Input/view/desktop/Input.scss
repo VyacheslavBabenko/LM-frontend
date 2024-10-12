@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'password';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/password.ttf);
+}
+
+.input-desktop {
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 0.9375rem;
+
+  &__native {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    border: 0 solid transparent;
+    background-color: transparent;
+    outline: none;
+    font-family: 'Manrope', sans-serif;
+    -webkit-appearance: none;
+
+    &::placeholder {
+      font-family: 'Manrope', sans-serif;
+    }
+    &:focus#{&}::placeholder {
+      color: transparent;
+    }
+
+    &_activePassword {
+      font-family: 'password';
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus#{&}:-webkit-autofill,
+    &:-webkit-autofill::first-line,
+    &::-internal-input-seggested {
+      font: 0.875rem 'Manrope', sans-serif !important; // рофланебало от разрабов хрома - захардкодили стили фонта ради безопасности - https://bugs.chromium.org/p/chromium/issues/detail?id=953689
+      color: black;
+      -webkit-text-fill-color: black;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+      transition: background-color 5000s ease-in-out 0s;
+      background: -webkit-linear-gradient(
+        top,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 174, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0) 51%,
+        rgba(0, 174, 255, 0.03) 100%
+      );
+    }
+    &::-webkit-inner-spin-button {
+      display: none !important;
+    }
+  }
+
+  &__measure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 1.25rem;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: right;
+    color: $text-grey;
+  }
+
+  &__password,
+  &__password-off {
+    cursor: pointer;
+    width: 1.875rem;
+    height: 1.875rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 0.3125rem;
+  }
+  &__password_active {
+    display: flex;
+  }
+  &__password-off_active {
+    display: flex;
+  }
+
+  &_fontSize_16 &__native {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+  &_fontSize_16 &__native::placeholder {
+    font-weight: 600;
+    font-size: 0.875rem;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+
+  &_color_default {
+    background: transparent;
+    border: 1px solid $bg-third;
+    border-radius: 0.3125rem;
+  }
+  &_color_default &__native {
+    color: $text-main;
+  }
+  &_color_default &__native::placeholder {
+    color: $text-grey;
+  }
+  &_disabled {
+    cursor: not-allowed;
+    background: $bg-second;
+  }
+  &_disabled &__native  {
+    color: $text-grey;
+    cursor: not-allowed;
+  }
+
+  &_validState_1 {
+    // border: 1px solid #ffffff !important;
+  }
+  &_validState_2 {
+    border: 1px solid #0d9252 !important;
+  }
+  &_validState_3 {
+    border: 1px solid #d31c32 !important;
+  }
+}

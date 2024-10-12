@@ -1,0 +1,36 @@
+.logout-button-desktop {
+  &__icon-wrapper {
+    padding: 0.625rem;
+    border: 1px solid $bg-third;
+    cursor: pointer;
+    border-radius: 0.625rem;
+  }
+
+  &__icon {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__modal {
+    max-width: 28.1875rem;
+    padding: 2.5rem 6.25rem;
+    border-radius: 0.625rem;
+    background: $bg-main;
+    color: $text-main;
+  }
+
+  &__modal-title {
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  &__modal-button {
+    height: 2.5rem;
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
