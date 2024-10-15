@@ -1,83 +1,90 @@
 .sign-up-desktop {
-	margin: auto;
-	width: 35rem;
-	box-sizing: content-box;
-	padding: 4.453125rem 5.21875rem 14.09375rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 0.625rem;
-	background: $bg-main;
-	color: $text-main;
+  margin: auto;
+  width: 35rem;
+  box-sizing: content-box;
+  padding: 4.453125rem 5.21875rem 14.09375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.625rem;
+  background: $bg-main;
+  color: $text-main;
 
-	&__logo {
-		margin-bottom: 0.5rem;
-		width: 3.8125rem;
-		height: 3.8125rem;
-		display: block;
-	}
+  &__logo {
+    margin-bottom: 0.5rem;
+    width: 3.8125rem;
+    height: 3.8125rem;
+    display: block;
+  }
 
-	&__title {
-		margin-bottom: 2.578125rem;
-		font-size: 2rem;
-	}
+  &__title {
+    margin-bottom: 2.578125rem;
+    font-size: 2rem;
+  }
 
-	&__subtitle {
-		margin-bottom: 1.25rem;
-		font-weight: 700;
-		font-size: 1.25rem;
-	}
+  &__subtitle {
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
 
-	&__inputs {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-	}
+  &__inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 
-	&__item {
-		display: inline-block;
-		width: 100%;
-		margin-bottom: 1.25rem;
-	}
+  &__item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.25rem;
+  }
 
-	&__item-text {
-		margin-bottom: 0.3125rem;
-		font-weight: 600;
-		font-size: 0.75rem;
-		color: $text-grey;
-	}
+  &__item-text {
+    margin-bottom: 0.3125rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: $text-grey;
+  }
 
-	&__item-field {
-		height: 3rem;
-	}
+  &__item-field {
+    height: 3rem;
+  }
 
-	&__bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-	&__lang {
-		height: 2.75rem;
-		display: flex;
-	}
+  &__lang {
+    height: 2.75rem;
+    display: flex;
+  }
 
-	&__button {
-		margin-left: 0.75rem;
-		flex-grow: 0;
-		height: 3rem;
-		min-width: 6.4375rem;
-	}
+  &__button {
+    margin-left: 0.75rem;
+    flex-grow: 0;
+    height: 3rem;
+    min-width: 6.4375rem;
+  }
 
-	&__doYouHaveAccount {
-		margin-top: 1rem;
-		width: 100%;
-		display: flex;
-		justify-content: end;
-		gap: 0.5rem;
+  &__error {
+    color: #ff4d4f;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    padding-left: 0.25rem;
+  }
 
-		&__login {
-			font-weight: 700;
-		}
-	}
+  &__doYouHaveAccount {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+
+    &__login {
+      font-weight: 700;
+    }
+  }
 }

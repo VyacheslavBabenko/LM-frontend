@@ -6,6 +6,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   isValid?: boolean;
   measure?: string;
   isPassword?: boolean;
+  error?: string | null;
 }
 
 export type { IInputProps };
