@@ -44,7 +44,7 @@ const useTransferLeadModel = () => {
 			...values,
 			recipient: [notChosenItem, ...formatUsersToFinder(users)],
 		});
-	}, [users]);
+	}, [users, locale]);
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setValues((prevValues) => ({

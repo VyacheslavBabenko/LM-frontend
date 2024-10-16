@@ -34,7 +34,7 @@ export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
       }
     />
     <Route
-      path="/transfer-lead"
+      path="/transferred-leads"
       element={
         <ProtectedRoute isAuth={isAuth}>
           <TransferredLeads />

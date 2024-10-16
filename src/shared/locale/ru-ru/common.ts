@@ -24,6 +24,8 @@ export const common = {
 		"5": "Ждем ответа",
 		"6": "Закрыт",
 	},
+	error: 'Ошибка',
+
 
   adminPanel: 'Admin Panel',
   balance: 'Баланс',

@@ -11,12 +11,13 @@ import {
 	mapUser,
 	useTransferredLeadsTableConfig,
 } from "features/transferredLeads/model/data";
-import { Lead } from "store/leads/transferredLeads/transferredLeads";
 import useTransferredLeadsModel from "features/transferredLeads/model/useTransferredLeadsModel";
+import { Lead } from "store/leads/transferredLeads/types";
 
 const b = block("transferred-leads");
 export const TransferredLeads = () => {
 	const { leads, count } = useAppSelector((state) => state.transferredLeads);
+
 	const model = useTransferredLeadsModel();
 	const config = useTransferredLeadsTableConfig();
 
