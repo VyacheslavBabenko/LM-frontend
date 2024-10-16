@@ -1,0 +1,114 @@
+.paginator-dropdown-selector-mobile {
+  width: fit-content;
+  min-width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  user-select: none;
+
+  &__selected-item {
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  // &_open &__selected-item {
+  //   border-radius: 0.3125rem 0.3125rem 0 0;
+  // }
+
+  &__selected-item-value {
+    height: 100%;
+    min-width: 2.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.3125rem 0 0;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.3125rem;
+    border: 1px solid #ffb401;
+    border-radius: 0.3125rem;
+  }
+  &_open &__selected-item-value {
+    border-radius: 0.3125rem 0.3125rem 0 0;
+  }
+  &__selected-item-arrow-border {
+    width: 1.875rem;
+    height: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #2a2f40;
+    border-radius: 0.3125rem;
+  }
+  &__selected-item-arrow {
+    width: 0.75rem;
+    height: 0.4375rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* transition: transform 0.3s ease; */
+  }
+  &_open &__selected-item-arrow {
+    transform: scaleY(-1);
+  }
+
+  &__items {
+    width: calc(100% - 1.875rem - 0.3125rem);
+    max-height: 9rem;
+    z-index: 2;
+    position: absolute;
+    top: 100%;
+    overflow: auto;
+    border-top: none;
+    border-radius: 0 0 0.3125rem 0.3125rem;
+    background: transparent;
+    backdrop-filter: blur(0.625rem);
+    border: 1px solid #ffb401;
+    border-top: 1px solid transparent;
+
+    &::-webkit-scrollbar {
+      width: 0.1875rem;
+      height: 90%;
+      scroll-margin-right: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      width: 0.1875rem;
+      background: #ffb401;
+    }
+  }
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  &__item:hover {
+    background-color: #ffb401;
+  }
+  &__item-value {
+    min-height: 1.875rem;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    color: #ffffff;
+  }
+  &__item:hover &__item-value {
+    color: #111522;
+  }
+}

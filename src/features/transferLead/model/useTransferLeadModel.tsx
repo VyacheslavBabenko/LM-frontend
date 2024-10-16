@@ -6,7 +6,6 @@ import { transferLead } from "store/leads/transferLead/transferLeadSlice";
 import { useAppDispatch } from "store/store";
 import { countryItems, formatUsersToFinder, getNoneSelectItem } from "./data";
 import { fetchUsers } from "store/users/usersSlice";
-import { fetchTransferredLeads } from "store/leads/transferredLeads/transferredLeads";
 
 const useTransferLeadModel = () => {
 	const dispatch = useAppDispatch();
@@ -28,7 +27,7 @@ const useTransferLeadModel = () => {
 		firstName: "",
 		lastName: "",
 		phone: "",
-		country: countryItems,
+		country: [notChosenItem, ...countryItems],
 		details: "",
 		purchaseTimeframe: "",
 		budget: "",
@@ -38,7 +37,6 @@ const useTransferLeadModel = () => {
 
 	useEffect(() => {
 		dispatch(fetchUsers());
-		dispatch(fetchTransferredLeads());
 	}, []);
 
 	useEffect(() => {
@@ -46,7 +44,14 @@ const useTransferLeadModel = () => {
 			...values,
 			recipient: [notChosenItem, ...formatUsersToFinder(users)],
 		});
-	}, [users]);
+	}, [users, locale]);
+
+	useEffect(() => {
+		setValues({
+			...values,
+			country: [notChosenItem, ...countryItems],
+		});
+	}, [locale]);
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setValues((prevValues) => ({
@@ -84,7 +89,7 @@ const useTransferLeadModel = () => {
 			!values.firstName ||
 			!values.lastName ||
 			!values.phone ||
-			!values.country ||
+			values.country.find((el) => el.active)?.key === notChosenItem.key ||
 			!values.details ||
 			!values.purchaseTimeframe ||
 			!values.budget ||
@@ -97,7 +102,7 @@ const useTransferLeadModel = () => {
 			e.stopPropagation();
 
 			const info = {
-				recipient: values.recipient.find((el) => el.active)?.value,
+				recipientID: values.recipient.find((el) => el.active)?.value,
 				firstName: values.firstName,
 				lastName: values.lastName,
 				phone: values.phone,

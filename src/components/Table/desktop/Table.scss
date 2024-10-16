@@ -1,0 +1,9 @@
+.table {
+  border-radius: 0.625rem;
+  overflow: hidden;
+  gap: 0;
+
+  &__rows {
+    background: #fff;
+  }
+}

@@ -1,26 +1,44 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { useAppDispatch } from 'store/store';
 import { registerUser } from 'store/auth/authThunks';
 import useValidation from '../validation/useValidation';
+import { getNoneSelectItem } from 'features/transferLead/model/data';
+import { formatCompaniesToFinder } from './data';
 
 const useRegisterForm = () => {
   const dispatch = useAppDispatch();
+  const { validationError, validate } = useValidation();
 
   const { loading } = useAppSelector((state) => state.auth, shallowEqual);
+  const companies = useAppSelector((state) => state.users.companies);
+  const locale = useAppSelector((state) => state.locale.common);
 
-  const { validationError, validate } = useValidation();
+	const notChosenItem = useMemo(
+		() => getNoneSelectItem(locale.notChosen),
+		[locale]
+	);
 
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
     phone: '',
-    company: '',
+    company: [notChosenItem],
     email: '',
     password: '',
   });
+
+
+
+  useEffect(() => {
+		setValues({
+			...values,
+			company: [notChosenItem, ...formatCompaniesToFinder(companies)],
+		});
+	}, [companies, locale]);
+  
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -40,6 +58,13 @@ const useRegisterForm = () => {
     }
   }, []);
 
+  const onChangeCompany = useCallback((value: typeof values.company) => {
+		setValues((ps) => ({
+			...ps,
+			company: value,
+		}));
+	}, []);
+
   const disabled = useMemo(
     () =>
       values.email === '' ||
@@ -47,7 +72,7 @@ const useRegisterForm = () => {
       values.firstName === '' ||
       values.lastName === '' ||
       values.phone === '' ||
-      values.company === '' ||
+      values.company.find((el) => el.active)?.key === notChosenItem.key ||
       loading,
     [
       values.password,
@@ -57,6 +82,7 @@ const useRegisterForm = () => {
       values.lastName,
       values.phone,
       loading,
+      notChosenItem
     ]
   );
   const onSubmit = useCallback(
@@ -64,14 +90,18 @@ const useRegisterForm = () => {
       e.preventDefault();
       e.stopPropagation();
 
+      const companyActive = values.company.find((el) => el.active)?.value;
+    
+
       const { email, password, phone } = validate(values);
 
-      if (email === '' && password === '' && phone === '') {
+      if (email === '' && password === '' && phone === '' && !disabled && companyActive) {
         const info = {
           ...values,
           phone: Number(values.phone),
+          company: companyActive
         };
-        if (!disabled) dispatch(registerUser(info));
+        dispatch(registerUser(info));
       }
     },
     [validate, values, disabled, dispatch]
@@ -82,10 +112,11 @@ const useRegisterForm = () => {
       values,
       validationError,
       disabled,
+      onChangeCompany,
       handleChange,
       onSubmit,
     }),
-    [values, validationError, disabled, handleChange, onSubmit]
+    [values, validationError, disabled,onChangeCompany, handleChange, onSubmit]
   );
 };
 

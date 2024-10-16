@@ -92,7 +92,7 @@ const SelectFinder = function <TValue = string>({
 				/>
 				<SVG
 					className={b("item-arrow-selected")}
-					svgProps={{ svg: arrowSVG }}
+					svgProps={{ src: arrowSVG }}
 				/>
 			</div>
 			{(isOpen || search !== null) && (

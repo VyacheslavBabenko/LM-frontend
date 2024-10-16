@@ -1,0 +1,22 @@
+.table-body-cell {
+  padding: 0.625rem;
+  border-bottom: 1px solid #cfdae9;
+  color: #000;
+  font-size: 0.6875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 0.6875rem */
+  word-wrap: break-word;
+
+  &:first-child {
+    border-left: 4px solid #0094ff;
+  }
+
+  &_withElement {
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

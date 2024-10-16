@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { domain } from 'shared/constants';
 import { addNotify } from 'store/notify/notifySlice';
 

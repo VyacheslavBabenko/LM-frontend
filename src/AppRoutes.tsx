@@ -1,9 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import SignIn from './features/auth/view/desktop/SignIn';
-import SignUp from './features/auth/view/desktop/SignUp';
-import HomePage from 'features/homePage/view/desktop/HomePage';
-import TransferLead from 'features/transferLead/view/desktop/TransferLead';
+import SignIn from "./features/auth/view/desktop/SignIn";
+import SignUp from "./features/auth/view/desktop/SignUp";
+import HomePage from "features/homePage/view/desktop/HomePage";
+import TransferLead from "features/transferLead/view/desktop/TransferLead";
+import TransferredLeads from "features/transferredLeads/view/desktop/TransferredLeads";
 
 interface ProtectedRouteProps {
   isAuth: boolean;
@@ -29,6 +30,14 @@ export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
       element={
         <ProtectedRoute isAuth={isAuth}>
           <TransferLead />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/transferred-leads"
+      element={
+        <ProtectedRoute isAuth={isAuth}>
+          <TransferredLeads />
         </ProtectedRoute>
       }
     />
