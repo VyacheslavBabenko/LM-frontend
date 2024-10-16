@@ -8,7 +8,7 @@ export interface TransferredLeadsState {
 }
 
 export interface FetchTransferredLeadsParams {
-	company?: string;
+	company?: number;
 	firstName?: string;
 	lastName?: string;
 	country?: string;

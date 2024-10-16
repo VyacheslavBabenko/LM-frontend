@@ -6,7 +6,12 @@ import { domain } from "shared/constants";
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
 	const response = await axios.get(`${domain}/api/users`, {
 		withCredentials: true,
-	}); // Запрос на бэкенд для получения пользователей
+	}); 
+	return response.data;
+});
+// Асинхронный thunk для получения всех компаний
+export const fetchCompanies = createAsyncThunk("companies/fetchCompanies", async () => {
+	const response = await axios.get(`${domain}/api/companies/get-companies`); 
 	return response.data;
 });
 
@@ -16,6 +21,7 @@ const usersSlice = createSlice({
 		users: [],
 		loading: false,
 		error: null,
+		companies: [],
 	},
 	reducers: {},
 	extraReducers: (builder) => {
@@ -28,6 +34,16 @@ const usersSlice = createSlice({
 				state.users = action.payload; // Сохраняем полученных пользователей в стейте
 			})
 			.addCase(fetchUsers.rejected, (state) => {
+				state.loading = false;
+			})
+			.addCase(fetchCompanies.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(fetchCompanies.fulfilled, (state, action) => {
+				state.loading = false;
+				state.companies = action.payload; // Сохраняем полученных компании в стейте
+			})
+			.addCase(fetchCompanies.rejected, (state) => {
 				state.loading = false;
 			});
 	},

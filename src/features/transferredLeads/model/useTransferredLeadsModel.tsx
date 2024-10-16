@@ -15,6 +15,7 @@ import {
 	getNoneSelectItem,
 } from "features/transferLead/model/data";
 import { fetchUsers } from "store/users/usersSlice";
+import { formatCompaniesToFinder } from "features/auth/model/signUp/data";
 
 const useModel = () => {
 	const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ const useModel = () => {
 	const count = useAppSelector((state) => state.transferredLeads.count);
 	const refetch = useAppSelector((state) => state.transferredLeads.refetch);
 	const locale = useAppSelector((state) => state.locale.common);
-	const { users } = useAppSelector((state) => state.users);
+	const { users, companies } = useAppSelector((state) => state.users);
 
 	const notChosenItem = useMemo(
 		() => getNoneSelectItem(locale.notChosen),
@@ -34,6 +35,7 @@ const useModel = () => {
 	const [values, setValues] = useState({
 		firstName: "",
 		lastName: "",
+		company: [notChosenItem],
 		installment: [notChosenItem, ...installmentItems],
 		recipient: [notChosenItem],
 		country: [notChosenItem, ...countryItems],
@@ -54,6 +56,13 @@ const useModel = () => {
 			recipient: [notChosenItem, ...formatUsersToFinder(users)],
 		});
 	}, [users, locale]);
+
+	useEffect(() => {
+		setValues({
+			...values,
+			company: [notChosenItem, ...formatCompaniesToFinder(companies)],
+		});
+	}, [companies, locale]);
 
 	useEffect(() => {
 		setValues((prevValues) => ({
@@ -99,6 +108,13 @@ const useModel = () => {
 		[]
 	);
 
+	const onChangeCompany = useCallback((value: typeof values.company) => {
+		setValues((ps) => ({
+			...ps,
+			company: value,
+		}));
+	}, []);
+
 	const onChangeStatus = useCallback(
 		(value: typeof values.statuses) =>
 			setValues((ps) => ({ ...ps, statuses: value })),
@@ -140,6 +156,7 @@ const useModel = () => {
 			const countryActive = values.country.find((el) => el.active);
 			const statusActive = values.statuses.find((el) => el.active);
 			const installmentActive = values.installment.find((el) => el.active);
+			const companiesActive = values.company.find((el) => el.active);
 
 			dispatch(
 				fetchTransferredLeads({
@@ -147,6 +164,10 @@ const useModel = () => {
 					limit: finalItemsOnPage,
 					firstName: values.firstName,
 					lastName: values.lastName,
+					company: companiesActive?.key !== notChosenItem.key &&
+					companiesActive?.value
+						? companiesActive.value
+						: undefined,
 					installment:
 						installmentActive?.key !== notChosenItem.key &&
 						installmentActive?.value
@@ -198,6 +219,7 @@ const useModel = () => {
 				onChangeCountry,
 				onChangeStatus,
 				onChangeInstallment,
+				onChangeCompany,
 
 				onPageChanged,
 				onSubmit,
@@ -216,6 +238,7 @@ const useModel = () => {
 			onChangeCountry,
 			onChangeStatus,
 			onChangeInstallment,
+			onChangeCompany,
 
 			onPageChanged,
 			onSubmit,

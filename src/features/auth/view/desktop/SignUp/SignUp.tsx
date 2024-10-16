@@ -14,6 +14,7 @@ import logoSVG from 'shared/img/logo.svg';
 
 import './SignUp.scss';
 import { Link } from 'react-router-dom';
+import SelectFinder from 'components/Selectors/SelectFinder/desktop';
 
 const b = block('sign-up-desktop');
 
@@ -106,19 +107,20 @@ const SignUp = () => {
               )}
             </div>
           </label>
+
+         
+
           <label className={b('item')} htmlFor="company">
             <div className={b('item-text')}>{locale.company}</div>
             <div className={b('item-field')}>
-              <Input
-                value={filterData.values.company}
-                onChange={(e) => filterData.handleChange(e)}
-                id="company"
-                name="company"
-                autoComplete="company"
-                placeholder={locale.company}
-              />
+            <SelectFinder
+								items={filterData.values.company}
+								onChange={filterData.onChangeCompany}
+							/>
+             
             </div>
           </label>
+
           <label className={b('item')} htmlFor="password">
             <div className={b('item-text')}>{locale.password}</div>
             <div className={b('item-field')}>

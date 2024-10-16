@@ -27,7 +27,7 @@ const useTransferLeadModel = () => {
 		firstName: "",
 		lastName: "",
 		phone: "",
-		country: countryItems,
+		country: [notChosenItem, ...countryItems],
 		details: "",
 		purchaseTimeframe: "",
 		budget: "",
@@ -45,6 +45,13 @@ const useTransferLeadModel = () => {
 			recipient: [notChosenItem, ...formatUsersToFinder(users)],
 		});
 	}, [users, locale]);
+
+	useEffect(() => {
+		setValues({
+			...values,
+			country: [notChosenItem, ...countryItems],
+		});
+	}, [locale]);
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setValues((prevValues) => ({
@@ -82,7 +89,7 @@ const useTransferLeadModel = () => {
 			!values.firstName ||
 			!values.lastName ||
 			!values.phone ||
-			!values.country ||
+			values.country.find((el) => el.active)?.key === notChosenItem.key ||
 			!values.details ||
 			!values.purchaseTimeframe ||
 			!values.budget ||

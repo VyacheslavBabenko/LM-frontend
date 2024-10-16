@@ -61,7 +61,7 @@ const TransferLead = () => {
 							<Input
 								value={model.values.phone}
 								placeholder={locale.phone}
-								type="string"
+								type="number"
 								name="phone"
 								onChange={(e) => model.handleChange(e)}
 							/>

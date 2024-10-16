@@ -12,6 +12,7 @@ import block from "bem-cn";
 import axios from "axios";
 import { logoutUser } from "store/auth/authThunks";
 import { domain } from "shared/constants";
+import { fetchCompanies } from "store/users/usersSlice";
 
 const b = block("app-desktop");
 
@@ -35,6 +36,8 @@ const App = () => {
 			}
 		};
 		checkAuth();
+		dispatch(fetchCompanies());
+		
 	}, []);
 
 	return (

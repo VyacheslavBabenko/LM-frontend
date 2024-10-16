@@ -12,7 +12,6 @@ import "./TransferredLeadsFilters.scss";
 import { useAppSelector } from "shared/hooks/useAppSelector";
 import CheckBox from "components/CheckBox/desktop";
 import SelectFinder from "components/Selectors/SelectFinder/desktop";
-import { leadStatusItems } from "features/transferLead/model/data";
 
 const b = block("transferred-leads-filters");
 
@@ -60,15 +59,13 @@ const TransferredLeadsFilters: FC<ITransferredLeadsFilters> = ({
 					<div className={b("item")}>
 						<div className={b("item-name")}>{locale.company}</div>
 						<div className={b("item-field")}>
-							<Input
-								value={filterState.values.company}
-								placeholder={locale.company}
-								type="string"
-								name="company"
-								onChange={filterState.handleChange}
+							<SelectFinder
+								items={filterState.values.company}
+								onChange={filterState.onChangeCompany}
 							/>
 						</div>
 					</div>
+				
 				</div>
 				<div className={b("second-inputs")}>
 					<div className={b("item")}>
