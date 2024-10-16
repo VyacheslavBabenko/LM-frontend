@@ -42,7 +42,9 @@
     &:-webkit-autofill:focus#{&}:-webkit-autofill,
     &:-webkit-autofill::first-line,
     &::-internal-input-seggested {
-      font: 0.875rem 'Manrope', sans-serif !important; // рофланебало от разрабов хрома - захардкодили стили фонта ради безопасности - https://bugs.chromium.org/p/chromium/issues/detail?id=953689
+      font:
+        0.875rem 'Manrope',
+        sans-serif !important; // рофланебало от разрабов хрома - захардкодили стили фонта ради безопасности - https://bugs.chromium.org/p/chromium/issues/detail?id=953689
       color: black;
       -webkit-text-fill-color: black;
       -webkit-box-shadow: 0 0 0px 1000px transparent inset;
@@ -94,12 +96,16 @@
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1rem;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings:
+      'pnum' on,
+      'lnum' on;
   }
   &_fontSize_16 &__native::placeholder {
     font-weight: 600;
     font-size: 0.875rem;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings:
+      'pnum' on,
+      'lnum' on;
   }
 
   &_color_default {
@@ -117,9 +123,14 @@
     cursor: not-allowed;
     background: $bg-second;
   }
-  &_disabled &__native  {
+  &_disabled &__native {
     color: $text-grey;
     cursor: not-allowed;
+  }
+
+  &_error {
+    background-color: rgba(253, 235, 235, 0.5);
+    border: 1px solid #d31c32 !important;
   }
 
   &_validState_1 {
