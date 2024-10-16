@@ -65,7 +65,6 @@ const useRegisterForm = () => {
       e.stopPropagation();
 
       const { email, password, phone } = validate(values);
-      console.log({ email, password, phone });
 
       if (email === '' && password === '' && phone === '') {
         const info = {
