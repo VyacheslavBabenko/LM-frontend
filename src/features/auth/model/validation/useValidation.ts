@@ -22,7 +22,7 @@ const useValidation = () => {
   }, []);
 
   const validatePhone = useCallback((phone: string) => {
-    const phonePattern = /^\+?[1-9]\d{1,14}$/;
+    const phonePattern = /^\+?[1-9]\d{5,14}$/;
     if (!phonePattern.test(phone)) return 'invalidPhone';
     return '';
   }, []);

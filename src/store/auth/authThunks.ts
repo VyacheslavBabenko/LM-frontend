@@ -22,7 +22,7 @@ export type TValidationErrors = {
 export const registerUser = createAsyncThunk<
   TUser | null, // Тип возвращаемого значения
   TUser // Тип аргумента
->('auth/registerUser', async (userData, { dispatch }) => {
+>('auth/registerUser', async (userData, { dispatch, rejectWithValue }) => {
   try {
     const response = await axios.post<TUser>(`${domain}/api/auth/register`, userData, {
       withCredentials: true,
@@ -43,7 +43,7 @@ export const registerUser = createAsyncThunk<
       })
     );
 
-    return null;
+    return rejectWithValue(err.response?.data as string);
   }
 });
 
