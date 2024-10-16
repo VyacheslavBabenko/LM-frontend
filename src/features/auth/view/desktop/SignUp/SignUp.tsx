@@ -17,19 +17,15 @@ import { Link } from 'react-router-dom';
 
 const b = block('sign-up-desktop');
 
-interface Locale {
-  [key: string]: string;
-}
-
 const SignUp = () => {
-  const locale: Locale = useAppSelector((state) => state.locale.common, shallowEqual);
+  const locale = useAppSelector((state) => state.locale.common, shallowEqual);
   const loading = useAppSelector((state) => state.auth.loading, shallowEqual);
 
   const filterData = useRegisterForm();
 
   const getErrorMessage = (errorKey: string) => {
     if (!errorKey) return '';
-    return locale[errorKey] || 'Uncaught error';
+    return locale[errorKey as keyof typeof locale] || 'Uncaught error';
   };
 
   return (

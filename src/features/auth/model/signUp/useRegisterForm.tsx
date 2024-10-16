@@ -66,7 +66,7 @@ const useRegisterForm = () => {
 
       const { email, password, phone } = validate(values);
 
-      if (email === '' || password === '' || phone === '') {
+      if (email === '' && password === '' && phone === '') {
         const info = {
           ...values,
           phone: Number(values.phone),
