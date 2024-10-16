@@ -30,8 +30,6 @@ interface IImages {
 	[key: string]: any;
 }
 
-type ICurrencies = "CDF";
-
 // позволяет вытаскивать типы свойств по имени
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
@@ -45,7 +43,6 @@ export type {
 	IImages,
 	ISelectorListItem,
 	ISelectorListItemSimple,
-	ICurrencies,
 	ISetTimeout,
 	IKey,
 	PropType,

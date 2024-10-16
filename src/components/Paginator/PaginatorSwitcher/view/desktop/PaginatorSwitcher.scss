@@ -1,0 +1,56 @@
+.paginator-switcher-desktop {
+  user-select: none;
+  // min-width: 2.625rem;
+  width: fit-content;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  border: 1px solid $bg-third;
+
+  &__page-item {
+    cursor: pointer;
+    width: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    color: $text-main;
+
+    &:nth-child(2n) {
+      background: $bg-second;
+    }
+
+    &_active#{&} {
+      background: $text-accent;
+      color: #FFF;
+    }
+  }
+
+  &__page-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__arrow-left-container,
+  &__arrow-right-container {
+    padding: 0.625rem 1.875rem;
+    cursor: pointer;
+  }
+  &__arrow-left,
+  &__arrow-right {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+  }
+  &__arrow-right {
+    transform: rotate(180deg);
+  }
+}

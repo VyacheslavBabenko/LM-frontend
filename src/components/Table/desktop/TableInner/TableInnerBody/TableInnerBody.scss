@@ -1,0 +1,22 @@
+.table-body-dekstop-inner {
+  &__row {
+    height: 1.563rem;
+
+    &:nth-child(2n) {
+      background-color: #EDF0F4;
+    }
+  }
+  &_withTotal &__row {
+    &:last-child {
+      height: 1.375rem;
+      background-color: #0094FF;
+
+      * {
+        color: #FFF;
+        font-family: Manrope;
+        font-size: 0.688rem;
+        font-weight: 700;
+      }
+    }
+  }
+}

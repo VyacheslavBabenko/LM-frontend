@@ -16,6 +16,14 @@ export const common = {
 	settings: "Settings",
 	dontHaveAccount: "Do not have an account?",
 	doYouHaveAccount: "Do you have an account?",
+	leadStatuses: {
+		"1": "Lead sent",
+		"2": "Work in progress",
+		"3": "Call scheduled",
+		"4": "Proposal sent",
+		"5": "Awaiting response",
+		"6": "Closed",
+	},
 
 	adminPanel: "Admin Panel",
 	balance: "Balance",
@@ -520,13 +528,7 @@ export const common = {
 	royaltiesPaid: "Royalties Paid",
 	cgr: "CGR",
 	positiveProviderShare: "Positive Provider Share",
-	negativeProviderShare: "Negative Provider Share",
-	17: "Partner Deposit",
-	18: "Debt transfer from the previous month",
-	19: "Balance transfer from the previous month",
-	20: "Partner withdrawal",
-	21: "Positive Provider Share",
-	22: "Positive Provider Share",
+
 	deletePopup: "Delete popup",
 
 	ordinalNumber: "Ordinal number",

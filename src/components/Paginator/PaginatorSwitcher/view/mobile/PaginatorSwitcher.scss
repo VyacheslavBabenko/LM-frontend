@@ -1,0 +1,51 @@
+.paginator-switcher-mobile {
+  user-select: none;
+  min-width: 2.625rem;
+  width: fit-content;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #1f2228;
+  border-radius: 5.625rem;
+
+  &__page-item {
+    cursor: pointer;
+    width: 2.875rem;
+    height: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    color: #ffffff;
+
+    &:last-child,
+    &:first-child {
+      background: transparent;
+    }
+  }
+  &__active {
+    color: #ffffff;
+    box-shadow: inset 0 -1px 0px 0px #616b75;
+  }
+
+  &__arrow-left-container,
+  &__arrow-right-container {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__arrow-left,
+  &__arrow-right {
+    width: 1.875rem;
+    height: 1.875rem;
+    display: flex;
+  }
+  &__arrow-right {
+    transform: rotate(180deg);
+  }
+}

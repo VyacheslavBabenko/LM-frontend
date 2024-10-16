@@ -16,6 +16,14 @@ export const common = {
 	settings: "Настройки",
 	dontHaveAccount: "У вас нет аккаунта?",
 	doYouHaveAccount: "У вас есть аккаунт?",
+	leadStatuses: {
+		"1": "Лид отправлен",
+		"2": "Лид принят в работу",
+		"3": "Назначен общий звонок",
+		"4": "Предложение отправлено",
+		"5": "Ждем ответа",
+		"6": "Закрыт",
+	},
 
 	adminPanel: "Admin Panel",
 	balance: "Баланс",
@@ -434,13 +442,6 @@ export const common = {
 	carryingBalanceFromLastMonth: "Перенос остатка с прошлого месяца",
 	debitingFromPartner: "Списание с партнера",
 	positiveProviderShare: "Положительный provider-share",
-	negativeProviderShare: "Отрицательный provider-share",
-	17: "Внесение депозитов партнера",
-	18: "Перенос долга с прошлого месяца",
-	19: "Перенос остатка с прошлого месяца",
-	20: "Списание с партнера",
-	21: "Доля прибыли от дохода",
-	22: "Доля прибыли от дохода",
 
 	// report
 	graph: "График",
