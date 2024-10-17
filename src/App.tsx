@@ -27,10 +27,11 @@ const App = () => {
 				const response = await axios.get(`${domain}/api/auth/check`, {
 					withCredentials: true,
 				});
+				// console.log(response.data.isAuth);
 
-				// if (!response.data.isAuth && isAuthenticated) {
-				// 	dispatch(logoutUser());
-				// }
+				if (!response.data.isAuth && isAuthenticated) {
+					dispatch(logoutUser());
+				}
 			} catch (e: unknown) {
 				dispatch(logoutUser());
 			}
