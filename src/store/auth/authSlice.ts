@@ -1,9 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { registerUser, loginUser, logoutUser, TUser } from './authThunks'; // Импортируем thunks
 
+export type TReceivedUser = {
+  email: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
+  phone: number;
+  company: string;
+}
+
+
 type TAuthState = {
   isAuthenticated: boolean;
-  user: null | { email: string; firstName: string };
+  user: null | TReceivedUser;
   loading: boolean;
   error: string | null;
 };

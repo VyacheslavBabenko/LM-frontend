@@ -25,6 +25,7 @@ export const common = {
 		"6": "Закрыт",
 	},
 	error: 'Ошибка',
+  sender: 'Отправитель',
 
 
   adminPanel: 'Admin Panel',

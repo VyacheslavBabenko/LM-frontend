@@ -25,6 +25,7 @@ export const common = {
 		"6": "Closed",
 	},
   error: 'Error',
+  sender: 'Sender',
 
   adminPanel: 'Admin Panel',
   balance: 'Balance',

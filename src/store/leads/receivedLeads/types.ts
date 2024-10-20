@@ -1,5 +1,5 @@
 // Определяем начальное состояние
-export interface TransferredLeadsState {
+export interface ReceivedLeadsState {
 	leads: Lead[];
 	loading: boolean;
 	error: string | null;
@@ -7,7 +7,7 @@ export interface TransferredLeadsState {
 	refetch: boolean;
 }
 
-export interface FetchTransferredLeadsParams {
+export interface FetchReceivedLeadsParams {
 	company?: number;
 	firstName?: string;
 	lastName?: string;
@@ -20,7 +20,7 @@ export interface FetchTransferredLeadsParams {
 }
 
 // Определяем тип возвращаемого значения и параметров
-export interface FetchTransferredLeadsResponse {
+export interface FetchReceivedLeadsResponse {
 	leads: Lead[];
 	count: number;
 }

@@ -8,6 +8,7 @@ import appSlice from "./app/appSlice";
 import notifySlice from "./notify/notifySlice";
 import transferLeadSlice from "./leads/transferLead/transferLeadSlice";
 import transferredLeadsSlice from "./leads/transferredLeads/transferredLeads";
+import receivedLeadsSlice from "./leads/receivedLeads/receivedLeads";
 import usersSlice from "./users/usersSlice";
 
 // Конфигурация для redux-persist
@@ -28,6 +29,7 @@ const store = configureStore({
 		transferLead: transferLeadSlice,
 		users: usersSlice,
 		transferredLeads: transferredLeadsSlice,
+		receivedLeads: receivedLeadsSlice,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
@@ -42,5 +44,4 @@ export const persistor = persistStore(store); // Создаем persistor для
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
-
 export default store;

@@ -5,6 +5,7 @@ import SignUp from "./features/auth/view/desktop/SignUp";
 import HomePage from "features/homePage/view/desktop/HomePage";
 import TransferLead from "features/transferLead/view/desktop/TransferLead";
 import TransferredLeads from "features/transferredLeads/view/desktop/TransferredLeads";
+import ReceivedLeads from 'features/receivedLeads/view/desktop/ReceivedLeads';
 
 interface ProtectedRouteProps {
   isAuth: boolean;
@@ -38,6 +39,14 @@ export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
       element={
         <ProtectedRoute isAuth={isAuth}>
           <TransferredLeads />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/received-leads"
+      element={
+        <ProtectedRoute isAuth={isAuth}>
+          <ReceivedLeads />
         </ProtectedRoute>
       }
     />
