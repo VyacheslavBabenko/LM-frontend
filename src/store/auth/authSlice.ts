@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { registerUser, loginUser, logoutUser, TUser } from './authThunks'; // Импортируем thunks
+import { registerUser, loginUser, logoutUser } from './authThunks'; // Импортируем thunks
 
 export type TReceivedUser = {
   email: string;
@@ -13,7 +13,7 @@ export type TReceivedUser = {
 
 type TAuthState = {
   isAuthenticated: boolean;
-  user: null | TReceivedUser;
+  user: TReceivedUser | null ;
   loading: boolean;
   error: string | null;
 };
@@ -43,7 +43,7 @@ const authSlice = createSlice({
       state.error = null; // Сбрасываем ошибку
     };
 
-    const handleFulfilled = (state: TAuthState, action: PayloadAction<TUser>) => {
+    const handleFulfilled = (state: TAuthState, action: PayloadAction<TReceivedUser>) => {
       state.loading = false; // Завершаем загрузку
       state.user = action.payload; // Устанавливаем пользователя
       state.isAuthenticated = true;
@@ -55,8 +55,8 @@ const authSlice = createSlice({
     };
 
     builder
-      .addCase(registerUser.pending, handlePending)
-      .addCase(registerUser.fulfilled, handleFulfilled)
+    .addCase(registerUser.pending, handlePending)
+    .addCase(registerUser.fulfilled, handleFulfilled)
       .addCase(registerUser.rejected, handleRejected) // Обновлено
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {

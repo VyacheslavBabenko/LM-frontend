@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { domain } from 'shared/constants';
 import { addNotify } from 'store/notify/notifySlice';
+import { TReceivedUser } from './authSlice';
 
 export type TUser = {
   email: string;
@@ -19,11 +20,11 @@ export type TValidationErrors = {
 
 // Функция для регистрации пользователя
 export const registerUser = createAsyncThunk<
-  TUser | null, // Тип возвращаемого значения
+TReceivedUser | null, // Тип возвращаемого значения
   TUser // Тип аргумента
 >('auth/registerUser', async (userData, { dispatch, rejectWithValue }) => {
   try {
-    const response = await axios.post<TUser>(`${domain}/api/auth/register`, userData, {
+    const response = await axios.post(`${domain}/api/auth/register`, userData, {
       withCredentials: true,
     });
 
