@@ -10,16 +10,17 @@ import { useAppSelector } from "shared/hooks/useAppSelector";
 
 import { Lead } from "store/leads/transferredLeads/types";
 import useReceivedLeadsModel from "features/receivedLeads/model/useReceivedLeadsModel";
-import { mapUser, useReceivedLeadsTableConfig } from "features/receivedLeads/model/data";
-import { useState } from "react";
+import {
+	mapUser,
+	useReceivedLeadsTableConfig,
+} from "features/receivedLeads/model/data";
+import ChangeStatusModal from "./ChangeStatusModal/ChangeStatusModal";
 
 const b = block("received-leads");
 export const ReceivedLeads = () => {
-	// const [isChangeStatusModalOpen, setsChangeStatusModalOpen] = useState(false);
 	const { leads, count } = useAppSelector((state) => state.receivedLeads);
 	const model = useReceivedLeadsModel();
 	const config = useReceivedLeadsTableConfig();
-
 
 	const items = leads.map((item) => ({ ...item }));
 
@@ -50,13 +51,7 @@ export const ReceivedLeads = () => {
 				</div>
 			)}
 
-{/* {isChangeStatusModalOpen && (
-        <ChangeStatusModal
-          type={banModalProps.type}
-          bannedProviders={banModalProps.bannedProviders}
-          setIsOpenModal={setIsBanUserModalOpen}
-        />
-      )} */}
+			<ChangeStatusModal />
 		</div>
 	);
 };

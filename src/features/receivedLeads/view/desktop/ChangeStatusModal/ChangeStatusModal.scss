@@ -1,37 +1,54 @@
 .change-status-modal {
-  &__modal {
-    max-width: 28.1875rem;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-    border-radius: 0.625rem;
-    background: #fff;
+	&__modal {
+		max-width: 28.1875rem;
+		padding: 2.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.25rem;
+		border-radius: 0.625rem;
+		background: #fff;
 
-    &-title {
-      text-align: center;
-      color: #000;
-      text-align: center;
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+		&-title {
+			text-align: center;
+			color: #000;
+			text-align: center;
+			font-size: 1rem;
+			font-style: normal;
+			font-weight: 700;
+			line-height: normal;
 
-      &_highlighted {
-        color: #0094ff;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-      }
-    }
+			&_highlighted {
+				color: #0094ff;
+				font-size: 1rem;
+				font-style: normal;
+				font-weight: 700;
+				line-height: normal;
+			}
+		}
 
-    &-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      min-width: 14.6875rem;
-    }
-  }
+		&-buttons {
+			display: flex;
+			flex-direction: column;
+			gap: 1.25rem;
+			min-width: 14.6875rem;
+		}
+	}
+
+	&__item {
+		font-weight: 600;
+		font-size: 0.75rem;
+		color: $text-grey;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__item-name {
+		margin-bottom: 0.3125rem;
+	}
+
+	&__item-field {
+		flex-grow: 2;
+		min-height: 3rem;
+	}
 }

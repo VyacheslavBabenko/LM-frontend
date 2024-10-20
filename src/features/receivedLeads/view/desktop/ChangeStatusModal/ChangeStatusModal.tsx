@@ -1,49 +1,84 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-import block from 'bem-cn';
+import block from "bem-cn";
 
-import Button from 'components/Button/desktop';
-import Modal from 'components/Modal/desktop';
+import Button from "components/Button/desktop";
+import Modal from "components/Modal/desktop";
 
+import "./ChangeStatusModal.scss";
+import { useAppDispatch, useAppSelector } from "shared/hooks/useAppSelector";
+import {
+	changeLeadStatus,
+	changeStatusModal,
+} from "store/leads/receivedLeads/receivedLeads";
+import SelectFinder from "components/Selectors/SelectFinder/desktop";
+import { getNoneSelectItem } from "features/transferLead/model/data";
+import { useLeadStatusItems } from "features/transferredLeads/model/data";
 
-import './ChangeStatusModal.scss';
-import { useAppDispatch, useAppSelector } from 'shared/hooks/useAppSelector';
+const b = block("change-status-modal");
+export const ChangeStatusModal = () => {
+	const locale = useAppSelector((state) => state.locale.common);
+	const leadStatusItems = useLeadStatusItems();
+	const { isOpen, id } = useAppSelector(
+		(state) => state.receivedLeads.modal.statusModal
+	);
+	const dispatch = useAppDispatch();
 
-interface IChangeStatusModal {
-  setIsOpenModal: (arg: boolean) => void;
-}
+	const notChosenItem = useMemo(
+		() => getNoneSelectItem(locale.notChosen),
+		[locale]
+	);
+	const [statuses, setStatuses] = useState([notChosenItem, ...leadStatusItems]);
 
-const b = block('change-status-modal');
-export const ChangeStatusModal: React.FC<IChangeStatusModal> = ({ setIsOpenModal }) => {
-  const locale = useAppSelector(state => state.locale.common);
-  const dispatch = useAppDispatch();
+	const statusActive = statuses.find((el) => el.active)?.key !== "NaN";
 
+	useEffect(() => {
+		setStatuses([notChosenItem, ...leadStatusItems]);
+	}, [locale]);
 
-  return (
-    <Modal onClose={() => setIsOpenModal(false)}>
-      <div className={b('modal')}>
-        <h5 className={b('modal-title')}>
-          {locale.areYouSureDeleteUser}
-          <span className={b('modal-title_highlighted')}>asf</span>?
-        </h5>
+	const onChangeStatus = (value: typeof statuses) => {
+		setStatuses([...value]);
+	};
 
-        <div className={b('modal-buttons')}>
-          <div className={b('modal-button')}>
-            <Button
-              color="hollow"
-              >
-              {locale.delete}
-            </Button>
-          </div>
-          <div className={b('modal-button')}>
-            <Button color="hollow-blue" onClick={() => setIsOpenModal(false)}>
-              {locale.cancel}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Modal>
-  );
+	const sendStatus = () => {
+		const statusActive = statuses.find((el) => el.active)?.value;
+
+		if (statusActive && id) {
+			dispatch(changeStatusModal(null));
+			dispatch(changeLeadStatus({ id, status: statusActive }));
+			setStatuses([notChosenItem, ...leadStatusItems]);
+		}
+	};
+
+	if (isOpen) {
+		return (
+			<Modal onClose={() => dispatch(changeStatusModal(null))}>
+				<div className={b("modal")}>
+					<h5 className={b("modal-title")}>{locale.changeStatus}</h5>
+
+					<div className={b("item")}>
+						<div className={b("item-name")}>{locale.status}</div>
+						<div className={b("item-field")}>
+							<SelectFinder items={statuses} onChange={onChangeStatus} />
+						</div>
+					</div>
+
+					<div className={b("modal-buttons")}>
+						<div className={b("modal-button")}>
+							<Button
+								color="hollow-blue"
+								onClick={sendStatus}
+								disabled={!statusActive}
+							>
+								{locale.done}
+							</Button>
+						</div>
+					</div>
+				</div>
+			</Modal>
+		);
+	}
+	return null;
 };
 
 export default ChangeStatusModal;

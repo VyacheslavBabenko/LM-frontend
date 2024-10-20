@@ -2,10 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { defaultItemsOnPage } from "components/FilterHeader/data";
 
-import {
-	useInstallmentItems,
-	useLeadStatusItems,
-} from "./data";
+import { useInstallmentItems, useLeadStatusItems } from "./data";
 import { useAppDispatch, useAppSelector } from "shared/hooks/useAppSelector";
 import {
 	countryItems,
@@ -23,8 +20,8 @@ const useModel = () => {
 	const count = useAppSelector((state) => state.receivedLeads.count);
 	const refetch = useAppSelector((state) => state.receivedLeads.refetch);
 	const locale = useAppSelector((state) => state.locale.common);
-	const { users, companies } = useAppSelector((state) => state.users);
-	const {user} = useAppSelector((state) => state.auth);
+	const { companies } = useAppSelector((state) => state.users);
+	const { user } = useAppSelector((state) => state.auth);
 
 	const notChosenItem = useMemo(
 		() => getNoneSelectItem(locale.notChosen),
@@ -38,7 +35,6 @@ const useModel = () => {
 		installment: [notChosenItem, ...installmentItems],
 		country: [notChosenItem, ...countryItems],
 		statuses: [notChosenItem, ...leadStatusItems],
-		
 
 		page: 0,
 		itemsOnPage: defaultItemsOnPage,
@@ -47,8 +43,6 @@ const useModel = () => {
 	useEffect(() => {
 		dispatch(fetchUsers());
 	}, []);
-
-	
 
 	useEffect(() => {
 		setValues({
@@ -88,7 +82,6 @@ const useModel = () => {
 		[]
 	);
 
-	
 	const onChangeCountry = useCallback(
 		(value: typeof values.country) =>
 			setValues((ps) => ({ ...ps, country: value })),
@@ -150,10 +143,10 @@ const useModel = () => {
 					limit: finalItemsOnPage,
 					firstName: values.firstName,
 					lastName: values.lastName,
-					company: companiesActive?.key !== notChosenItem.key &&
-					companiesActive?.value
-						? companiesActive.value
-						: undefined,
+					company:
+						companiesActive?.key !== notChosenItem.key && companiesActive?.value
+							? companiesActive.value
+							: undefined,
 					installment:
 						installmentActive?.key !== notChosenItem.key &&
 						installmentActive?.value

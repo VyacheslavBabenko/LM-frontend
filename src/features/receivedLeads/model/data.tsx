@@ -8,26 +8,24 @@ import React, { useMemo } from "react";
 // import { TManageCell } from "components/ManageCell/types";
 // import RoleCell from "components/RoleCell/desktop";
 // import { TRoleCell } from "components/RoleCell/types";
-import {
-	ITableColConfig,
-} from "components/Table/types";
+import { ITableColConfig } from "components/Table/types";
 import { useAppSelector } from "shared/hooks/useAppSelector";
 import { ELeadStatus, Lead } from "store/leads/transferredLeads/types";
 import { ISelectorListItemSimple } from "shared/helpers/types";
 import { countryItems } from "features/transferLead/model/data";
-
+import ChangeStatusCell from "components/CustomCells/desktop/ChangeStatusCell/ChangeStatusCell";
 
 export const useReceivedLeadsTableConfig = (): ITableColConfig<Lead>[] => {
 	const locale = useAppSelector((state) => state.locale.common);
-	const companies = useAppSelector(state => state.users.companies);
+	const companies = useAppSelector((state) => state.users.companies);
 	return [
 		{
 			localizationKey: "sender",
 			key: "sender",
 			renderBody: (data) => (
 				<div>
-					{data.sender.firstName} {data.sender.lastName} <br/>
-					({companies.find(el => el._id === data.sender.company)?.name})
+					{data.sender.firstName} {data.sender.lastName} <br />(
+					{companies.find((el) => el._id === data.sender.company)?.name})
 				</div>
 			),
 		},
@@ -81,22 +79,23 @@ export const useReceivedLeadsTableConfig = (): ITableColConfig<Lead>[] => {
 			key: "status",
 			renderBody: (data) => <div>{locale.leadStatuses[data.status]}</div>,
 		},
-		// {
-		// 	key: "manage",
-		// 	localizationKey: "manage",
-		// 	renderBody: (data) => (
-		// 		<div
-		// 			style={{
-		// 				display: "flex",
-		// 				alignItems: "center",
-		// 				justifyContent: "center",
-		// 				gap: "0.62rem",
-		// 			}}
-		// 		>
-		// 			<ManageCell {...data} />
-		// 		</div>
-		// 	),
-		// },
+		{
+			key: "manage",
+			localizationKey: "manage",
+			renderBody: (data) => (
+				<div
+					style={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						gap: "0.62rem",
+						cursor: "pointer",
+					}}
+				>
+					<ChangeStatusCell id={data._id} />
+				</div>
+			),
+		},
 	];
 };
 

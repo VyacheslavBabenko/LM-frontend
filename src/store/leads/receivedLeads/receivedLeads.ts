@@ -6,9 +6,16 @@ import {
 	FetchReceivedLeadsParams,
 	FetchReceivedLeadsResponse,
 } from "./types";
+import { addNotify } from "store/notify/notifySlice";
 
 const initialState: ReceivedLeadsState = {
 	leads: [],
+	modal: {
+		statusModal: {
+			id: null,
+			isOpen: false,
+		},
+	},
 	count: 0,
 	loading: false,
 	error: null,
@@ -27,11 +34,59 @@ export const fetchReceivedLeads = createAsyncThunk<
 	return response.data;
 });
 
+export const changeLeadStatus = createAsyncThunk<
+	void,
+	{ id: string; status: number }
+>(
+	"receivedLeads/changeLeadStatus",
+	async ({ id, status }, { dispatch, getState, rejectWithValue }) => {
+		const state = getState();
+		const locale = state.locale.common;
+
+		try {
+			const response = await axios.patch(
+				`${domain}/api/leads/change-status/${id}`,
+				{
+					status,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+
+			// Отправляем уведомление о успешном выполнении
+			dispatch(fetchReceivedLeads({}));
+			dispatch(
+				addNotify({
+					text: locale.operationSuccess,
+					type: "success",
+				})
+			);
+			return response.data;
+		} catch (error) {
+			// Отправляем уведомление об ошибке
+			dispatch(
+				addNotify({
+					text: locale.error,
+					type: "error",
+				})
+			);
+
+			return rejectWithValue(error.response?.data || "An error occurred");
+		}
+	}
+);
+
 // Создаем слайс
 const receivedLeadsSlice = createSlice({
 	name: "receivedLeads",
 	initialState,
-	reducers: {},
+	reducers: {
+		changeStatusModal(state, action) {
+			state.modal.statusModal.isOpen = !state.modal.statusModal.isOpen;
+			state.modal.statusModal.id = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchReceivedLeads.pending, (state) => {
@@ -51,4 +106,5 @@ const receivedLeadsSlice = createSlice({
 });
 
 // Экспортируем редюсер
+export const { changeStatusModal } = receivedLeadsSlice.actions;
 export default receivedLeadsSlice.reducer;

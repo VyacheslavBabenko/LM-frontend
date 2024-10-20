@@ -5,6 +5,12 @@ export interface ReceivedLeadsState {
 	error: string | null;
 	count: number;
 	refetch: boolean;
+	modal: {
+		statusModal: {
+			id: string | null,
+			isOpen: boolean,
+		},
+	}
 }
 
 export interface FetchReceivedLeadsParams {
