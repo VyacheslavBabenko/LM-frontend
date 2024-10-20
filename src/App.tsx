@@ -27,7 +27,6 @@ const App = () => {
 				const response = await axios.get(`${domain}/api/auth/check`, {
 					withCredentials: true,
 				});
-				// console.log(response.data.isAuth);
 
 				if (!response.data.isAuth && isAuthenticated) {
 					dispatch(logoutUser());
@@ -38,7 +37,6 @@ const App = () => {
 		};
 		checkAuth();
 		dispatch(fetchCompanies());
-		
 	}, []);
 
 	return (
