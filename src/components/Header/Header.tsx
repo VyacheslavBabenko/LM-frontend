@@ -21,9 +21,9 @@ import { toggleSideMenu } from 'store/app/appSlice';
 const b = block('header-desktop');
 
 const Header = () => {
-  const { sideMenuOpened } = useAppSelector((state) => state.app, shallowEqual);
-  const user = useAppSelector((state) => state.auth.user, shallowEqual);
-  const locale = useAppSelector((state) => state.locale.common);
+  const { sideMenuOpened } = useAppSelector(state => state.app, shallowEqual);
+  const user = useAppSelector(state => state.auth.user, shallowEqual);
+  const locale = useAppSelector(state => state.locale.common);
   const dispatch = useDispatch();
 
   const handleBurgerClick = useCallback(() => {

@@ -43,7 +43,7 @@ const store = configureStore({
     transferredLeads: transferredLeadsSlice,
     receivedLeads: receivedLeadsSlice,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'], // Игнорируем эти экшены
