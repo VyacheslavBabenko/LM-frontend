@@ -16,6 +16,7 @@ type IsValid = (
 const usePhoneValidator = ({ setIsValid }: IUsePhoneValidatorProps) => {
   const memoIsValid = useCallback<IsValid>(
     (inputNumber, country, countries) => {
+      console.log(inputNumber);
       if (!setIsValid) return true;
       const isNeededCode = countries.some(country2 => {
         const result = startsWith(inputNumber, country2.dialCode) || startsWith(country2.dialCode, inputNumber);

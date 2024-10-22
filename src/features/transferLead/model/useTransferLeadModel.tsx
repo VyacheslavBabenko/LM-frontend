@@ -7,6 +7,13 @@ import { useAppDispatch } from 'store/store';
 import { countryItems, formatUsersToFinder, getNoneSelectItem } from './data';
 import { fetchUsers } from 'store/users/usersSlice';
 
+type CustomChangeEvent = {
+  target: {
+    name: string;
+    value: string;
+  };
+};
+
 const useTransferLeadModel = () => {
   const dispatch = useAppDispatch();
   const locale = useAppSelector(state => state.locale.common);
@@ -47,7 +54,7 @@ const useTransferLeadModel = () => {
     });
   }, [locale]);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement> | CustomChangeEvent) => {
     setValues(prevValues => ({
       ...prevValues,
       [e.target.name]: e.target.value,
@@ -130,6 +137,7 @@ const useTransferLeadModel = () => {
 
   return useMemo(
     () => ({
+      loading,
       values,
       disabled,
       handleChange,
@@ -139,7 +147,7 @@ const useTransferLeadModel = () => {
 
       onSubmit,
     }),
-    [values, disabled, handleChange, handleCheckboxChange, onChangeRecipient, onChangeCountry, onSubmit],
+    [loading, values, disabled, handleChange, handleCheckboxChange, onChangeRecipient, onChangeCountry, onSubmit],
   );
 };
 

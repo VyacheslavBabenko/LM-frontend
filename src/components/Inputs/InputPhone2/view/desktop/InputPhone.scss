@@ -5,20 +5,22 @@
   display: flex;
   align-items: center;
   outline: none;
-  background: #ffffff;
-  border: 1px solid #4c579a;
   border-radius: 0.625rem;
   font-size: 1.25rem;
   color: #4c579a;
-  font-family: 'Product Sans', sans-serif;
+  font-family: 'Manrope', sans-serif;
   -webkit-appearance: none;
+
+  background: transparent;
+  border: 1px solid $bg-third;
+  border-radius: 0.3125rem;
 
   &_isValid {
     border: 1px solid green;
   }
 
   &::placeholder {
-    font-family: 'Product Sans', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 1.25rem;
     color: #4c579a;
   }
@@ -46,17 +48,13 @@
   .react-tel-input .form-control.invalid-number {
     border: none !important;
     background: transparent !important;
-    /* padding: 0 !important; */
     height: 100%;
-    color: #4c579a !important;
-    font-size: 1.25rem !important;
-    font-family: 'Product Sans', sans-serif !important;
+    color: $text-main !important;
+    font-family: 'Manrope', sans-serif;
     -webkit-appearance: none !important;
 
     &::placeholder {
-      font-family: 'Product Sans', sans-serif !important;
-      font-size: 1.25rem !important;
-      color: #4c579a !important;
+      font-family: 'Manrope', sans-serif;
     }
 
     &:-webkit-autofill,
@@ -78,6 +76,7 @@
       );
     }
   }
+
   .react-tel-input .form-control .invalid-number {
     width: 100%;
     color: #4c579a !important;
@@ -86,19 +85,31 @@
     background: #4c579a !important;
   }
   .react-tel-input .country {
-    background: #4c579a !important;
+    background: white !important;
   }
   .react-tel-input .country .highlight {
     color: #4c579a !important;
   }
   .react-tel-input .country-list .country .dial-code,
   .react-tel-input .country-name {
-    color: white !important;
+    color: black !important;
     font-size: 0.875rem !important;
   }
   .react-tel-input .form-control {
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    line-height: 1rem;
+    font-feature-settings:
+      'pnum' on,
+      'lnum' on;
     width: 100% !important;
   }
+
+  .react-tel-input .form-control::placeholder {
+    color: $text-grey;
+    font-family: 'Manrope', sans-serif;
+  }
+
   .react-tel-input .country-list {
     width: max-content !important;
   }

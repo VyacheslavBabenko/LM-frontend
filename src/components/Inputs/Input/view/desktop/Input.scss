@@ -133,6 +133,13 @@
     border: 1px solid #d31c32 !important;
   }
 
+  &__error {
+    color: #ff4d4f;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    padding-left: 0.25rem;
+  }
+
   &_validState_1 {
     // border: 1px solid #ffffff !important;
   }

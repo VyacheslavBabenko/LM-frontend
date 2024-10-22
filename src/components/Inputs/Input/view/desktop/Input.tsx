@@ -25,7 +25,7 @@ const Input = ({
   const [passwordVisible, setPasswordVisible] = useState(false);
   const passwordClick = useCallback(
     () => setPasswordVisible(!passwordVisible && isPassword),
-    [passwordVisible, isPassword]
+    [passwordVisible, isPassword],
   );
 
   const validState = useMemo(() => {
@@ -35,34 +35,37 @@ const Input = ({
   }, [restProps.isValid, restProps.value]);
 
   return (
-    <div className={b({ color, fontSize, validState, disabled, error: !!error })}>
-      <input
-        className={b('native', {
-          type: isPassword ? 'password' : type,
-          activePassword: isPassword && !passwordVisible,
-          error: !!error,
-        })}
-        type={passwordVisible ? 'text' : type}
-        disabled={disabled}
-        {...restProps}
-      />
+    <>
+      <div className={b({ color, fontSize, validState, disabled, error: !!error })}>
+        <input
+          className={b('native', {
+            type: isPassword ? 'password' : type,
+            activePassword: isPassword && !passwordVisible,
+            error: !!error,
+          })}
+          type={passwordVisible ? 'text' : type}
+          disabled={disabled}
+          {...restProps}
+        />
 
-      {isPassword && (
-        <>
-          <SVG
-            svgProps={{ src: passwordSVG }}
-            className={b('password', { active: passwordVisible })}
-            onClick={passwordClick}
-          />
-          <SVG
-            svgProps={{ src: passwordOffSVG }}
-            className={b('password-off', { active: !passwordVisible })}
-            onClick={passwordClick}
-          />
-        </>
-      )}
-      {measure && <span className={b('measure')}>{measure}</span>}
-    </div>
+        {isPassword && (
+          <>
+            <SVG
+              svgProps={{ src: passwordSVG }}
+              className={b('password', { active: passwordVisible })}
+              onClick={passwordClick}
+            />
+            <SVG
+              svgProps={{ src: passwordOffSVG }}
+              className={b('password-off', { active: !passwordVisible })}
+              onClick={passwordClick}
+            />
+          </>
+        )}
+        {measure && <span className={b('measure')}>{measure}</span>}
+      </div>
+      <div className={b('error')}>{error}</div>
+    </>
   );
 };
 

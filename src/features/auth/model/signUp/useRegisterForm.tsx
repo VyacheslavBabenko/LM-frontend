@@ -12,14 +12,11 @@ const useRegisterForm = () => {
   const dispatch = useAppDispatch();
   const { validationError, validate } = useValidation();
 
-  const { loading } = useAppSelector((state) => state.auth, shallowEqual);
-  const companies = useAppSelector((state) => state.users.companies);
-  const locale = useAppSelector((state) => state.locale.common);
+  const { loading } = useAppSelector(state => state.auth, shallowEqual);
+  const companies = useAppSelector(state => state.users.companies);
+  const locale = useAppSelector(state => state.locale.common);
 
-	const notChosenItem = useMemo(
-		() => getNoneSelectItem(locale.notChosen),
-		[locale]
-	);
+  const notChosenItem = useMemo(() => getNoneSelectItem(locale.notChosen), [locale]);
 
   const [values, setValues] = useState({
     firstName: '',
@@ -30,15 +27,12 @@ const useRegisterForm = () => {
     password: '',
   });
 
-
-
   useEffect(() => {
-		setValues({
-			...values,
-			company: [notChosenItem, ...formatCompaniesToFinder(companies)],
-		});
-	}, [companies, locale]);
-  
+    setValues({
+      ...values,
+      company: [notChosenItem, ...formatCompaniesToFinder(companies)],
+    });
+  }, [companies, locale]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,12 +40,12 @@ const useRegisterForm = () => {
     // Проверка для поля "phone" - только цифры
     if (name === 'phone') {
       const onlyNumbers = value.replace(/[^\d+]/g, '');
-      setValues((prevValues) => ({
+      setValues(prevValues => ({
         ...prevValues,
         [name]: onlyNumbers,
       }));
     } else {
-      setValues((prevValues) => ({
+      setValues(prevValues => ({
         ...prevValues,
         [name]: value.trim(),
       }));
@@ -59,11 +53,11 @@ const useRegisterForm = () => {
   }, []);
 
   const onChangeCompany = useCallback((value: typeof values.company) => {
-		setValues((ps) => ({
-			...ps,
-			company: value,
-		}));
-	}, []);
+    setValues(ps => ({
+      ...ps,
+      company: value,
+    }));
+  }, []);
 
   const disabled = useMemo(
     () =>
@@ -72,7 +66,7 @@ const useRegisterForm = () => {
       values.firstName === '' ||
       values.lastName === '' ||
       values.phone === '' ||
-      values.company.find((el) => el.active)?.key === notChosenItem.key ||
+      values.company.find(el => el.active)?.key === notChosenItem.key ||
       loading,
     [
       values.password,
@@ -82,16 +76,15 @@ const useRegisterForm = () => {
       values.lastName,
       values.phone,
       loading,
-      notChosenItem
-    ]
+      notChosenItem,
+    ],
   );
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       e.stopPropagation();
 
-      const companyActive = values.company.find((el) => el.active)?.value;
-    
+      const companyActive = values.company.find(el => el.active)?.value;
 
       const { email, password, phone } = validate(values);
 
@@ -99,12 +92,12 @@ const useRegisterForm = () => {
         const info = {
           ...values,
           phone: Number(values.phone),
-          company: companyActive
+          company: companyActive?.toString() || '',
         };
         dispatch(registerUser(info));
       }
     },
-    [validate, values, disabled, dispatch]
+    [validate, values, disabled, dispatch],
   );
 
   return useMemo(
@@ -116,7 +109,7 @@ const useRegisterForm = () => {
       handleChange,
       onSubmit,
     }),
-    [values, validationError, disabled,onChangeCompany, handleChange, onSubmit]
+    [values, validationError, disabled, onChangeCompany, handleChange, onSubmit],
   );
 };
 
