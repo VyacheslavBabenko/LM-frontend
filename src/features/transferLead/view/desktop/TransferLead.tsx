@@ -25,9 +25,6 @@ const TransferLead = () => {
   const navigate = useNavigate();
   const model = useTransferLeadModel();
 
-  // const [phoneInputValue, setPhoneInputValue] = useState(phoneByCountries[0]);
-  const [valid, setIsValid] = useState(false);
-
   const onClickCancel = () => {
     navigate(-1);
   };
@@ -68,8 +65,6 @@ const TransferLead = () => {
               <InputPhone
                 value={model.values.phone}
                 placeholder="(999) 999-99-99"
-                isValid={valid}
-                setIsValid={setIsValid}
                 onChange={value => model.handleChange({ target: { name: 'phone', value } })}
                 country="ru"
               />

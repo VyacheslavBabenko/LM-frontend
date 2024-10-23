@@ -7,6 +7,7 @@ import { registerUser } from 'store/auth/authThunks';
 import useValidation from '../validation/useValidation';
 import { getNoneSelectItem } from 'features/transferLead/model/data';
 import { formatCompaniesToFinder } from './data';
+import { CustomChangeEvent } from 'shared/helpers/types';
 
 const useRegisterForm = () => {
   const dispatch = useAppDispatch();
@@ -34,22 +35,11 @@ const useRegisterForm = () => {
     });
   }, [companies, locale]);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    // Проверка для поля "phone" - только цифры
-    if (name === 'phone') {
-      const onlyNumbers = value.replace(/[^\d+]/g, '');
-      setValues(prevValues => ({
-        ...prevValues,
-        [name]: onlyNumbers,
-      }));
-    } else {
-      setValues(prevValues => ({
-        ...prevValues,
-        [name]: value.trim(),
-      }));
-    }
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement> | CustomChangeEvent) => {
+    setValues(prevValues => ({
+      ...prevValues,
+      [e.target.name]: e.target.value,
+    }));
   }, []);
 
   const onChangeCompany = useCallback((value: typeof values.company) => {
@@ -87,7 +77,6 @@ const useRegisterForm = () => {
       const companyActive = values.company.find(el => el.active)?.value;
 
       const { email, password, phone } = validate(values);
-
       if (email === '' && password === '' && phone === '' && !disabled && companyActive) {
         const info = {
           ...values,

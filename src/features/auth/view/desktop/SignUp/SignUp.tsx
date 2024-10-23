@@ -15,6 +15,7 @@ import logoSVG from 'shared/img/logo.svg';
 import './SignUp.scss';
 import { Link } from 'react-router-dom';
 import SelectFinder from 'components/Selectors/SelectFinder/desktop';
+import InputPhone from 'components/Inputs/InputPhone2/desktop';
 
 const b = block('sign-up-desktop');
 
@@ -76,14 +77,11 @@ const SignUp = () => {
           <label className={b('item')} htmlFor="phone">
             <div className={b('item-text')}>{locale.phone}</div>
             <div className={b('item-field')}>
-              <Input
+              <InputPhone
                 value={filterData.values.phone}
-                onChange={e => filterData.handleChange(e)}
-                id="phone"
-                name="phone"
-                autoComplete="phone"
-                placeholder={locale.phone}
-                error={filterData.validationError.phone}
+                onChange={value => filterData.handleChange({ target: { name: 'phone', value } })}
+                placeholder="(999) 999-99-99"
+                country="ru"
               />
             </div>
           </label>

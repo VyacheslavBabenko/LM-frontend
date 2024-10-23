@@ -13,8 +13,6 @@ const b = block('input-phone2-desktop');
 
 const InputPhone = ({ isValid, setIsValid, error, ...restProps }: IInputPhone2Props) => {
   const validate = usePhoneValidator({ setIsValid });
-  console.log(isValid);
-  console.log(validate);
   return (
     <div className={b({ error: !!error, isValid })}>
       <PhoneInput {...restProps} isValid={validate} />

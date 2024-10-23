@@ -6,13 +6,7 @@ import { transferLead } from 'store/leads/transferLead/transferLeadSlice';
 import { useAppDispatch } from 'store/store';
 import { countryItems, formatUsersToFinder, getNoneSelectItem } from './data';
 import { fetchUsers } from 'store/users/usersSlice';
-
-type CustomChangeEvent = {
-  target: {
-    name: string;
-    value: string;
-  };
-};
+import { CustomChangeEvent } from 'shared/helpers/types';
 
 const useTransferLeadModel = () => {
   const dispatch = useAppDispatch();
