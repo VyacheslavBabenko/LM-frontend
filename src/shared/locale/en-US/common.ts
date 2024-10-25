@@ -28,6 +28,8 @@ export const common = {
 	sender: "Sender",
 	changeStatus: "Изменить статус",
 	done: "Done",
+	leadGeolocation: "Lead geolocation",
+	purchaseCountry: "Purchase country",
 
 	adminPanel: "Admin Panel",
 	balance: "Balance",

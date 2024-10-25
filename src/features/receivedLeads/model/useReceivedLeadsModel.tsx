@@ -33,7 +33,8 @@ const useModel = () => {
 		lastName: "",
 		company: [notChosenItem],
 		installment: [notChosenItem, ...installmentItems],
-		country: [notChosenItem, ...countryItems],
+		leadGeolocation: [notChosenItem, ...countryItems],
+		purchaseCountry: [notChosenItem, ...countryItems],
 		statuses: [notChosenItem, ...leadStatusItems],
 
 		page: 0,
@@ -56,7 +57,8 @@ const useModel = () => {
 			...prevValues,
 			installment: [notChosenItem, ...installmentItems],
 			statuses: [notChosenItem, ...leadStatusItems],
-			country: [notChosenItem, ...countryItems],
+			leadGeolocation: [notChosenItem, ...countryItems],
+			purchaseCountry: [notChosenItem, ...countryItems],
 		}));
 	}, [locale]);
 
@@ -82,9 +84,15 @@ const useModel = () => {
 		[]
 	);
 
-	const onChangeCountry = useCallback(
-		(value: typeof values.country) =>
-			setValues((ps) => ({ ...ps, country: value })),
+	const onChangeLeadGeolocation = useCallback(
+		(value: typeof values.leadGeolocation) =>
+			setValues((ps) => ({ ...ps, leadGeolocation: value })),
+		[]
+	);
+
+	const onChangePurchaseCountry = useCallback(
+		(value: typeof values.leadGeolocation) =>
+			setValues((ps) => ({ ...ps, purchaseCountry: value })),
 		[]
 	);
 
@@ -132,7 +140,12 @@ const useModel = () => {
 				.filter((s) => s.active)
 				.map((s) => s.value)[0];
 
-			const countryActive = values.country.find((el) => el.active);
+			const purchaseCountryActive = values.purchaseCountry.find(
+				(el) => el.active
+			);
+			const leadGeolocationActive = values.leadGeolocation.find(
+				(el) => el.active
+			);
 			const statusActive = values.statuses.find((el) => el.active);
 			const installmentActive = values.installment.find((el) => el.active);
 			const companiesActive = values.company.find((el) => el.active);
@@ -156,9 +169,15 @@ const useModel = () => {
 						statusActive?.key !== notChosenItem.key && statusActive?.value
 							? statusActive.value
 							: undefined,
-					country:
-						countryActive?.key !== notChosenItem.key && countryActive?.value
-							? countryActive.value.toString()
+					purchaseCountry:
+						purchaseCountryActive?.key !== notChosenItem.key &&
+						purchaseCountryActive?.value
+							? purchaseCountryActive.value.toString()
+							: "",
+					leadGeolocation:
+						leadGeolocationActive?.key !== notChosenItem.key &&
+						leadGeolocationActive?.value
+							? leadGeolocationActive.value.toString()
 							: "",
 				})
 			);
@@ -190,7 +209,8 @@ const useModel = () => {
 				handleChange,
 				handleCheckboxChange,
 				onChangeSortTableRow,
-				onChangeCountry,
+				onChangeLeadGeolocation,
+				onChangePurchaseCountry,
 				onChangeStatus,
 				onChangeInstallment,
 				onChangeCompany,
@@ -208,7 +228,8 @@ const useModel = () => {
 			handleChange,
 			handleCheckboxChange,
 			onChangeSortTableRow,
-			onChangeCountry,
+			onChangeLeadGeolocation,
+			onChangePurchaseCountry,
 			onChangeStatus,
 			onChangeInstallment,
 			onChangeCompany,

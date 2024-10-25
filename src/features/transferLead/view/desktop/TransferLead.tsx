@@ -68,11 +68,20 @@ const TransferLead = () => {
 						</div>
 					</div>
 					<div className={b("item")}>
-						<div className={b("item-name")}>{locale.country}</div>
+						<div className={b("item-name")}>{locale.leadGeolocation}</div>
 						<div className={b("item-field")}>
 							<SelectFinder
-								items={model.values.country}
-								onChange={model.onChangeCountry}
+								items={model.values.leadGeolocation}
+								onChange={model.onChangeLeadGeolocation}
+							/>
+						</div>
+					</div>
+					<div className={b("item")}>
+						<div className={b("item-name")}>{locale.purchaseCountry}</div>
+						<div className={b("item-field")}>
+							<SelectFinder
+								items={model.values.purchaseCountry}
+								onChange={model.onChangePurchaseCountry}
 							/>
 						</div>
 					</div>

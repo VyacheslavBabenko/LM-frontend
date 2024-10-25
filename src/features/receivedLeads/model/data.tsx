@@ -42,11 +42,26 @@ export const useReceivedLeadsTableConfig = (): ITableColConfig<Lead>[] => {
 			key: "phone",
 		},
 		{
-			localizationKey: "country",
-			key: "country",
+			localizationKey: "purchaseCountry",
+			key: "purchaseCountry",
 			renderBody: (data) => (
 				<div>
-					{countryItems.find((el) => el.value === data.country)?.renderElement}
+					{
+						countryItems.find((el) => el.value === data.purchaseCountry)
+							?.renderElement
+					}
+				</div>
+			),
+		},
+		{
+			localizationKey: "leadGeolocation",
+			key: "leadGeolocation",
+			renderBody: (data) => (
+				<div>
+					{
+						countryItems.find((el) => el.value === data.leadGeolocation)
+							?.renderElement
+					}
 				</div>
 			),
 		},

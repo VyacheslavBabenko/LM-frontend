@@ -15,9 +15,7 @@ interface IReceivedLeadsFilters {
 	filterState: any;
 }
 
-const ReceivedLeadsFilters: FC<IReceivedLeadsFilters> = ({
-	filterState,
-}) => {
+const ReceivedLeadsFilters: FC<IReceivedLeadsFilters> = ({ filterState }) => {
 	const locale = useAppSelector((state) => state.locale.common, shallowEqual);
 
 	return (
@@ -61,7 +59,6 @@ const ReceivedLeadsFilters: FC<IReceivedLeadsFilters> = ({
 							/>
 						</div>
 					</div>
-				
 				</div>
 				<div className={b("second-inputs")}>
 					<div className={b("item")}>
@@ -84,16 +81,23 @@ const ReceivedLeadsFilters: FC<IReceivedLeadsFilters> = ({
 					</div>
 
 					<div className={b("item")}>
-						<div className={b("item-name")}>{locale.country}</div>
+						<div className={b("item-name")}>{locale.purchaseCountry}</div>
 						<div className={b("item-field")}>
 							<SelectFinder
-								items={filterState.values.country}
-								onChange={filterState.onChangeCountry}
+								items={filterState.values.purchaseCountry}
+								onChange={filterState.onChangepurchaseCountry}
 							/>
 						</div>
 					</div>
-
-					
+					<div className={b("item")}>
+						<div className={b("item-name")}>{locale.leadGeolocation}</div>
+						<div className={b("item-field")}>
+							<SelectFinder
+								items={filterState.values.leadGeolocation}
+								onChange={filterState.onChangeleadGeolocation}
+							/>
+						</div>
+					</div>
 				</div>
 			</FilterHeader>
 		</section>
