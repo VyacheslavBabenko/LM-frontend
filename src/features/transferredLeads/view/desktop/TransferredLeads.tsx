@@ -11,10 +11,14 @@ import { mapUser, useTransferredLeadsTableConfig } from 'features/transferredLea
 import useTransferredLeadsModel from 'features/transferredLeads/model/useTransferredLeadsModel';
 import { Lead } from 'store/leads/transferredLeads/types';
 import SummBlock from 'components/SummBlock/desktop/SummBlock';
+import Button from 'components/Button/desktop';
+import SVG from 'components/SVG';
+import excelSVG from 'shared/img/excel.svg';
 
 const b = block('transferred-leads');
 export const TransferredLeads = () => {
   const { leads, count } = useAppSelector(state => state.transferredLeads);
+  const locale = useAppSelector(state => state.locale.common);
 
   const model = useTransferredLeadsModel();
   const config = useTransferredLeadsTableConfig();
@@ -27,6 +31,15 @@ export const TransferredLeads = () => {
 
   return (
     <div className={b('wrapper')}>
+      <div className={b('top-buttons')}>
+        <div className={b('button')}>
+          <Button color="hollow-blue">
+            <SVG className={b('button', 'icon')} svgProps={{ src: excelSVG }} />
+            {locale.exportExcel}
+          </Button>
+        </div>
+      </div>
+
       <div className={b()}>
         <TransferredLeadsFilters filterState={model.inputState} />
         {leads.length !== 0 && (
