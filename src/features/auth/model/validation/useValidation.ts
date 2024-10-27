@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 const useValidation = () => {
+  const locale = useAppSelector(state => state.locale.common);
   const [validationError, setValidationErrors] = useState({
     email: '',
     password: '',
@@ -9,21 +11,21 @@ const useValidation = () => {
 
   const validateEmail = useCallback((email: string) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) return 'invalidEmail';
+    if (!emailPattern.test(email)) return locale.invalidEmail;
     return '';
   }, []);
 
   const validatePassword = useCallback((password: string) => {
-    if (password.length < 8) return 'minSymbols';
-    if (!/^[A-Za-z0-9]*$/.test(password)) return 'onlyLatinLettersAndDigits';
-    if (!/[A-Za-z]/.test(password)) return 'atLeastOneLetter';
-    if (!/\d/.test(password)) return 'atLeastOneDigit';
+    if (password.length < 8) return locale.minSymbols;
+    if (!/^[A-Za-z0-9]*$/.test(password)) return locale.onlyLatinLettersAndDigits;
+    if (!/[A-Za-z]/.test(password)) return locale.atLeastOneLetter;
+    if (!/\d/.test(password)) return locale.atLeastOneDigit;
     return '';
   }, []);
 
   const validatePhone = useCallback((phone: string) => {
     const phonePattern = /^\+?[1-9]\d{5,14}$/;
-    if (!phonePattern.test(phone)) return 'invalidPhone';
+    if (!phonePattern.test(phone)) return locale.invalidPhone;
     return '';
   }, []);
 
@@ -45,7 +47,7 @@ const useValidation = () => {
         phone: phoneError,
       };
     },
-    [validateEmail, validatePassword, validatePhone]
+    [validateEmail, validatePassword, validatePhone],
   );
 
   return useMemo(() => ({ validate, validationError }), [validate, validationError]);

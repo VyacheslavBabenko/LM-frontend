@@ -11,10 +11,10 @@ import './InputPhone.scss';
 
 const b = block('input-phone2-desktop');
 
-const InputPhone = ({ isValid, setIsValid, ...restProps }: IInputPhone2Props) => {
+const InputPhone = ({ isValid, setIsValid, error, ...restProps }: IInputPhone2Props) => {
   const validate = usePhoneValidator({ setIsValid });
   return (
-    <div className={b({ isValid })}>
+    <div className={b({ error: !!error, isValid })}>
       <PhoneInput {...restProps} isValid={validate} />
     </div>
   );

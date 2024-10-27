@@ -20,7 +20,7 @@ export type TValidationErrors = {
 
 // Функция для регистрации пользователя
 export const registerUser = createAsyncThunk<
-TReceivedUser | null, // Тип возвращаемого значения
+  TReceivedUser | null, // Тип возвращаемого значения
   TUser // Тип аргумента
 >('auth/registerUser', async (userData, { dispatch, rejectWithValue }) => {
   try {
@@ -40,7 +40,7 @@ TReceivedUser | null, // Тип возвращаемого значения
       addNotify({
         text: err.response?.data ? (err.response?.data as string) : 'Error',
         type: 'error',
-      })
+      }),
     );
 
     return rejectWithValue(err.response?.data as string);
@@ -71,7 +71,7 @@ export const loginUser = createAsyncThunk<
       addNotify({
         text: err.response?.data ? (err.response?.data as string) : 'Error',
         type: 'error',
-      })
+      }),
     );
 
     return rejectWithValue(err.response?.data as string);
@@ -90,7 +90,7 @@ export const logoutUser = createAsyncThunk<
       {},
       {
         withCredentials: true,
-      }
+      },
     );
     // window.location.pathname = "/";
     return response.data; // Возвращаем результат выхода
@@ -102,7 +102,7 @@ export const logoutUser = createAsyncThunk<
       addNotify({
         text: err.response?.data ? (err.response?.data as string) : 'Error',
         type: 'error',
-      })
+      }),
     );
   }
 });
