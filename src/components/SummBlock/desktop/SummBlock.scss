@@ -1,0 +1,31 @@
+.summ-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1.25rem;
+
+  &__title {
+    color: #8c9eb7;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__amount {
+    color: #000;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0 0.34rem;
+  }
+
+  &__currency {
+    color: #8c9eb7;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
