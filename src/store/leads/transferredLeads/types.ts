@@ -11,7 +11,8 @@ export interface FetchTransferredLeadsParams {
 	company?: number;
 	firstName?: string;
 	lastName?: string;
-	country?: string;
+	purchaseCountry?: string;
+	leadGeolocation?: string;
 	status?: ELeadStatus;
 	installment?: boolean;
 	recipientID?: string;
@@ -56,7 +57,8 @@ export interface Lead {
 	firstName: string;
 	lastName: string;
 	phone: string;
-	country: string;
+	purchaseCountry: string;
+	leadGeolocation: string;
 	details: string;
 	purchaseTimeframe: string;
 	budget: string;

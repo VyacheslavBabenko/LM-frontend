@@ -22,7 +22,8 @@ const useTransferLeadModel = () => {
     firstName: '',
     lastName: '',
     phone: '',
-    country: [notChosenItem, ...countryItems],
+    leadGeolocation: [notChosenItem, ...countryItems],
+    purchaseCountry: [notChosenItem, ...countryItems],
     details: '',
     purchaseTimeframe: '',
     budget: '',
@@ -44,7 +45,11 @@ const useTransferLeadModel = () => {
   useEffect(() => {
     setValues({
       ...values,
-      country: [notChosenItem, ...countryItems],
+      leadGeolocation: [notChosenItem, ...countryItems],
+    });
+    setValues({
+      ...values,
+      purchaseCountry: [notChosenItem, ...countryItems],
     });
   }, [locale]);
 
@@ -69,8 +74,13 @@ const useTransferLeadModel = () => {
     }));
   }, []);
 
-  const onChangeCountry = useCallback(
-    (value: typeof values.country) => setValues(ps => ({ ...ps, country: value })),
+  const onChangeLeadGeolocation = useCallback(
+    (value: typeof values.leadGeolocation) => setValues(ps => ({ ...ps, leadGeolocation: value })),
+    [],
+  );
+
+  const onChangePurchaseCountry = useCallback(
+    (value: typeof values.leadGeolocation) => setValues(ps => ({ ...ps, purchaseCountry: value })),
     [],
   );
 
@@ -80,7 +90,8 @@ const useTransferLeadModel = () => {
       firstName: '',
       lastName: '',
       phone: '',
-      country: [notChosenItem, ...countryItems],
+      leadGeolocation: [notChosenItem, ...countryItems],
+      purchaseCountry: [notChosenItem, ...countryItems],
       details: '',
       purchaseTimeframe: '',
       budget: '',
@@ -95,13 +106,15 @@ const useTransferLeadModel = () => {
       !values.firstName ||
       !values.lastName ||
       !values.phone ||
-      values.country.find(el => el.active)?.key === notChosenItem.key ||
+      values.leadGeolocation.find(el => el.active)?.key === notChosenItem.key ||
+      values.purchaseCountry.find(el => el.active)?.key === notChosenItem.key ||
       !values.details ||
       !values.purchaseTimeframe ||
       !values.budget ||
       loading,
     [values, loading, notChosenItem],
   );
+
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -112,7 +125,8 @@ const useTransferLeadModel = () => {
         firstName: values.firstName,
         lastName: values.lastName,
         phone: values.phone,
-        country: values.country.find(el => el.active)?.value,
+        leadGeolocation: values.leadGeolocation.find(el => el.active)?.value,
+        purchaseCountry: values.purchaseCountry.find(el => el.active)?.value,
         details: values.details,
         purchaseTimeframe: values.purchaseTimeframe,
         budget: values.budget,
@@ -131,17 +145,28 @@ const useTransferLeadModel = () => {
 
   return useMemo(
     () => ({
+      values,
+      disabled,
+      loading,
+      handleChange,
+      handleCheckboxChange,
+      onChangeRecipient,
+      onChangeLeadGeolocation,
+      onChangePurchaseCountry,
+
+      onSubmit,
+    }),
+    [
       loading,
       values,
       disabled,
       handleChange,
       handleCheckboxChange,
       onChangeRecipient,
-      onChangeCountry,
-
+      onChangeLeadGeolocation,
+      onChangePurchaseCountry,
       onSubmit,
-    }),
-    [loading, values, disabled, handleChange, handleCheckboxChange, onChangeRecipient, onChangeCountry, onSubmit],
+    ],
   );
 };
 

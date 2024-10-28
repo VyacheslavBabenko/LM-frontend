@@ -13,14 +13,14 @@ const b = block('side-menu-desktop');
 const SideMenu = () => {
   const open = useAppSelector(state => state.app.sideMenuOpened, shallowEqual);
 
-  const mainItem = useMainItem();
+  // const mainItem = useMainItem();
   const blocks = useItems().map(({ title, items }) => <SideMenuBlock title={title} items={items} key={title} />);
 
   return (
     <div className={b({ open })}>
-      <div className={b('item')}>
+      {/* <div className={b('item')}>
         <SideMenuItem item={mainItem} />
-      </div>
+      </div> */}
       {blocks}
     </div>
   );

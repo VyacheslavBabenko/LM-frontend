@@ -38,7 +38,8 @@ const useModel = () => {
 		company: [notChosenItem],
 		installment: [notChosenItem, ...installmentItems],
 		recipient: [notChosenItem],
-		country: [notChosenItem, ...countryItems],
+		leadGeolocation: [notChosenItem, ...countryItems],
+		purchaseCountry: [notChosenItem, ...countryItems],
 		statuses: [notChosenItem, ...leadStatusItems],
 		sortTableRow: initialAllUsersSort,
 
@@ -69,7 +70,8 @@ const useModel = () => {
 			...prevValues,
 			installment: [notChosenItem, ...installmentItems],
 			statuses: [notChosenItem, ...leadStatusItems],
-			country: [notChosenItem, ...countryItems],
+			leadGeolocation: [notChosenItem, ...countryItems],
+			purchaseCountry: [notChosenItem, ...countryItems],
 		}));
 	}, [locale]);
 
@@ -102,9 +104,15 @@ const useModel = () => {
 		}));
 	}, []);
 
-	const onChangeCountry = useCallback(
-		(value: typeof values.country) =>
-			setValues((ps) => ({ ...ps, country: value })),
+	const onChangeLeadGeolocation = useCallback(
+		(value: typeof values.leadGeolocation) =>
+			setValues((ps) => ({ ...ps, leadGeolocation: value })),
+		[]
+	);
+
+	const onChangePurchaseCountry = useCallback(
+		(value: typeof values.leadGeolocation) =>
+			setValues((ps) => ({ ...ps, purchaseCountry: value })),
 		[]
 	);
 
@@ -153,7 +161,12 @@ const useModel = () => {
 				.map((s) => s.value)[0];
 
 			const recipientActive = values.recipient.find((el) => el.active);
-			const countryActive = values.country.find((el) => el.active);
+			const purchaseCountryActive = values.purchaseCountry.find(
+				(el) => el.active
+			);
+			const leadGeolocationActive = values.leadGeolocation.find(
+				(el) => el.active
+			);
 			const statusActive = values.statuses.find((el) => el.active);
 			const installmentActive = values.installment.find((el) => el.active);
 			const companiesActive = values.company.find((el) => el.active);
@@ -164,10 +177,10 @@ const useModel = () => {
 					limit: finalItemsOnPage,
 					firstName: values.firstName,
 					lastName: values.lastName,
-					company: companiesActive?.key !== notChosenItem.key &&
-					companiesActive?.value
-						? companiesActive.value
-						: undefined,
+					company:
+						companiesActive?.key !== notChosenItem.key && companiesActive?.value
+							? companiesActive.value
+							: undefined,
 					installment:
 						installmentActive?.key !== notChosenItem.key &&
 						installmentActive?.value
@@ -177,9 +190,15 @@ const useModel = () => {
 						statusActive?.key !== notChosenItem.key && statusActive?.value
 							? statusActive.value
 							: undefined,
-					country:
-						countryActive?.key !== notChosenItem.key && countryActive?.value
-							? countryActive.value.toString()
+					purchaseCountry:
+						purchaseCountryActive?.key !== notChosenItem.key &&
+						purchaseCountryActive?.value
+							? purchaseCountryActive.value.toString()
+							: "",
+					leadGeolocation:
+						leadGeolocationActive?.key !== notChosenItem.key &&
+						leadGeolocationActive?.value
+							? leadGeolocationActive.value.toString()
 							: "",
 					recipientID:
 						recipientActive?.key !== notChosenItem.key && recipientActive?.value
@@ -216,7 +235,8 @@ const useModel = () => {
 				handleCheckboxChange,
 				onChangeSortTableRow,
 				onChangeRecipient,
-				onChangeCountry,
+				onChangeLeadGeolocation,
+				onChangePurchaseCountry,
 				onChangeStatus,
 				onChangeInstallment,
 				onChangeCompany,
@@ -235,7 +255,8 @@ const useModel = () => {
 			handleCheckboxChange,
 			onChangeSortTableRow,
 			onChangeRecipient,
-			onChangeCountry,
+			onChangeLeadGeolocation,
+			onChangePurchaseCountry,
 			onChangeStatus,
 			onChangeInstallment,
 			onChangeCompany,

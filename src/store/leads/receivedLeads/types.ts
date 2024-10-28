@@ -7,17 +7,18 @@ export interface ReceivedLeadsState {
 	refetch: boolean;
 	modal: {
 		statusModal: {
-			id: string | null,
-			isOpen: boolean,
-		},
-	}
+			id: string | null;
+			isOpen: boolean;
+		};
+	};
 }
 
 export interface FetchReceivedLeadsParams {
 	company?: number;
 	firstName?: string;
 	lastName?: string;
-	country?: string;
+	purchaseCountry?: string;
+	leadGeolocation?: string;
 	status?: ELeadStatus;
 	installment?: boolean;
 	recipientID?: string;

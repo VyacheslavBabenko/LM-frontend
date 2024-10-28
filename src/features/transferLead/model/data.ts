@@ -1,6 +1,4 @@
 import { ISelectorListItemSimple } from "shared/helpers/types";
-import { useAppSelector } from "shared/hooks/useAppSelector";
-import { ELeadStatus } from "store/leads/transferredLeads/types";
 import { v4 as uuidv4 } from "uuid";
 
 export const getNoneSelectItem = (
