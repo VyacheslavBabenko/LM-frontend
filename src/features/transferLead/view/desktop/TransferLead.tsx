@@ -1,6 +1,5 @@
 import block from 'bem-cn';
 
-import { useState } from 'react';
 import Button from 'components/Button/desktop';
 import Input from 'components/Inputs/Input/desktop';
 import TitleWithIcon from 'components/TitleWithIcon/TitleWithIcon';
