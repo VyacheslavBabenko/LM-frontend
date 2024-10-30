@@ -8,6 +8,7 @@ export const transferLead = createAsyncThunk(
   'leads/transferLead',
   async (info: unknown, { dispatch, getState, rejectWithValue }) => {
     const state = getState();
+    console.log(info);
     const locale = state.locale.common;
     try {
       const response = await axios.post(`${domain}/api/leads/create-lead`, info, {

@@ -8,8 +8,9 @@ import './Spinner.scss';
 
 const b = block('spinner-desktop');
 
-const Spinner = ({ isLoading, foolViewport }: ISpinnerProps) => isLoading ? (
-    <div className={b({ foolViewport })}>
+const Spinner = ({ isLoading, foolViewport, isLoadingNotFullViewport }: ISpinnerProps) =>
+  isLoading ? (
+    <div className={b({ foolViewport, isLoadingNotFullViewport })}>
       <img alt="spinner" className={b('logo')} src={spinnerIMG} />
     </div>
   ) : null;

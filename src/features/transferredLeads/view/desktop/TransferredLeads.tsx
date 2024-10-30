@@ -14,10 +14,11 @@ import SummBlock from 'components/SummBlock/desktop/SummBlock';
 import Button from 'components/Button/desktop';
 import SVG from 'components/SVG';
 import excelSVG from 'shared/img/excel.svg';
+import Spinner from 'components/Spinner/desktop';
 
 const b = block('transferred-leads');
 export const TransferredLeads = () => {
-  const { leads, count } = useAppSelector(state => state.transferredLeads);
+  const { leads, count, totalBudget } = useAppSelector(state => state.transferredLeads);
   const locale = useAppSelector(state => state.locale.common);
 
   const model = useTransferredLeadsModel();
@@ -42,20 +43,24 @@ export const TransferredLeads = () => {
 
       <div className={b()}>
         <TransferredLeadsFilters filterState={model.inputState} />
-        {leads.length !== 0 && (
-          <>
-            <Table<Lead>
-              data={items}
-              mapFn={mapUser}
-              config={config}
-              // sort={model.inputState.values.sortTableRow}
-              // onChangeSort={model.inputState.onChangeSortTableRow}
-            />
-            <SummBlock title="totalBalance" amount={213} />
-          </>
+        {model.loading ? (
+          <Spinner isLoading={model.loading} isLoadingNotFullViewport={true} />
+        ) : (
+          leads.length !== 0 && (
+            <>
+              <Table<Lead>
+                data={items}
+                mapFn={mapUser}
+                config={config}
+                // sort={model.inputState.values.sortTableRow}
+                // onChangeSort={model.inputState.onChangeSortTableRow}
+              />
+              <SummBlock title="totalBalance" amount={totalBudget} />
+            </>
+          )
         )}
       </div>
-      {count !== 0 && (
+      {count !== 0 && !model.loading && (
         <div className={b('paginator')}>
           <PaginatorSwitcherCustom
             pageCount={model.outputState.pageCount}
