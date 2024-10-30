@@ -79,6 +79,21 @@
     }
   }
 
+  &__item-textarea {
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: $text-grey;
+    grid-column: 1 / -5;
+
+    &-name {
+      margin-bottom: 0.3125rem;
+    }
+
+    &-field {
+      height: 4rem;
+    }
+  }
+
   &__role-cell {
     position: absolute;
     right: 0.9375rem;

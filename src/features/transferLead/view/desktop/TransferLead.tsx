@@ -112,18 +112,6 @@ const TransferLead = () => {
             </div>
           </div>
 
-          <div className={b('item')}>
-            <div className={b('item-name')}>{locale.details}</div>
-            <div className={b('item-field')}>
-              <TextArea
-                value={model.values.details}
-                placeholder={locale.details}
-                name="details"
-                onChange={e => model.handleChange(e)}
-              />
-            </div>
-          </div>
-
           <div className={b('item-checkbox')}>
             <div className={b('item-checkbox-name')}>{locale.installment}</div>
             <div className={b('item-checkbox-field')}>
@@ -131,6 +119,18 @@ const TransferLead = () => {
                 checked={model.values.installment}
                 onChange={e => model.handleCheckboxChange(e)}
                 name="installment"
+              />
+            </div>
+          </div>
+
+          <div className={`${b('item-textarea')}`}>
+            <div className={b('item-textarea-name')}>{locale.details}</div>
+            <div className={b('item-textarea-field')}>
+              <TextArea
+                value={model.values.details}
+                placeholder={locale.detailsPlaceholder}
+                name="details"
+                onChange={e => model.handleChange(e)}
               />
             </div>
           </div>
@@ -148,9 +148,9 @@ const TransferLead = () => {
             </div>
           </div>
 
-          <div className={b('item')}>
-            <div className={b('item-name')}>{locale.comments}</div>
-            <div className={b('item-field')}>
+          <div className={b('item-textarea')}>
+            <div className={b('item-textarea-name')}>{locale.comments}</div>
+            <div className={b('item-textarea-field')}>
               <TextArea
                 value={model.values.comments}
                 placeholder={locale.comments}
