@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import React, { ChangeEvent, ChangeEventHandler, useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import block from 'bem-cn';
 
 import SVG from 'components/SVG';
@@ -64,7 +64,7 @@ const Input = ({
         )}
         {measure && <span className={b('measure')}>{measure}</span>}
       </div>
-      <div className={b('error')}>{error}</div>
+      {error && <div className={b('error')}>{error}</div>}
     </>
   );
 };

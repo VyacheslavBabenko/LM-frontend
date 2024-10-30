@@ -17,6 +17,7 @@ import CheckBox from 'components/CheckBox/desktop';
 import SelectFinder from 'components/Selectors/SelectFinder/desktop';
 import Spinner from 'components/Spinner/desktop';
 import InputPhone from 'components/Inputs/InputPhone2/desktop';
+import TextArea from 'components/TextArea/desktop';
 
 const b = block('transfer-lead');
 const TransferLead = () => {
@@ -114,10 +115,9 @@ const TransferLead = () => {
           <div className={b('item')}>
             <div className={b('item-name')}>{locale.details}</div>
             <div className={b('item-field')}>
-              <Input
+              <TextArea
                 value={model.values.details}
                 placeholder={locale.details}
-                type="string"
                 name="details"
                 onChange={e => model.handleChange(e)}
               />
@@ -151,10 +151,9 @@ const TransferLead = () => {
           <div className={b('item')}>
             <div className={b('item-name')}>{locale.comments}</div>
             <div className={b('item-field')}>
-              <Input
+              <TextArea
                 value={model.values.comments}
                 placeholder={locale.comments}
-                type="string"
                 name="comments"
                 onChange={e => model.handleChange(e)}
               />
