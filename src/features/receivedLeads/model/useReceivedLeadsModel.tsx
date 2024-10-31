@@ -7,7 +7,8 @@ import { useAppDispatch, useAppSelector } from 'shared/hooks/useAppSelector';
 import { countryItems, getNoneSelectItem } from 'features/transferLead/model/data';
 import { fetchUsers } from 'store/users/usersSlice';
 import { formatCompaniesToFinder } from 'features/auth/model/signUp/data';
-import { fetchReceivedLeads } from 'store/leads/receivedLeads/receivedLeads';
+import { downloadReceivedLeadsExcel, fetchReceivedLeads } from 'store/leads/receivedLeads/receivedLeads';
+import { shallowEqual } from 'react-redux';
 
 const useModel = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const useModel = () => {
   const installmentItems = useInstallmentItems();
 
   const count = useAppSelector(state => state.receivedLeads.count);
-  const refetch = useAppSelector(state => state.receivedLeads.refetch);
+  const { refetch, loading } = useAppSelector(state => state.receivedLeads, shallowEqual);
   const locale = useAppSelector(state => state.locale.common);
   const { companies } = useAppSelector(state => state.users);
   const { user } = useAppSelector(state => state.auth);
@@ -93,14 +94,31 @@ const useModel = () => {
   );
 
   const onPageChanged = useCallback(
-    value =>
+    (value: number) =>
       setValues(ps => ({
         ...ps,
         page: value,
       })),
     [],
   );
-  const onItemsOnPageChanged = useCallback(value => setValues(ps => ({ ...ps, itemsOnPage: value })), []);
+
+  const onItemsOnPageChanged = useCallback(
+    (value: typeof values.itemsOnPage) => setValues(ps => ({ ...ps, itemsOnPage: value })),
+    [],
+  );
+
+  const handleDownloadClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+
+      dispatch(
+        downloadReceivedLeadsExcel({
+          excel: true,
+        }),
+      );
+    },
+    [dispatch],
+  );
 
   const pageCount = Math.ceil(count / Number(values.itemsOnPage.filter(item => item.active)[0].value)) ?? 1;
 
@@ -163,6 +181,7 @@ const useModel = () => {
       },
       inputState: {
         values,
+        handleDownloadClick,
         handleChange,
         handleCheckboxChange,
         onChangeSortTableRow,
@@ -175,12 +194,15 @@ const useModel = () => {
         onSubmit,
         onItemsOnPageChanged,
       },
+      loading,
     }),
     [
       // items,
       pageCount,
       count,
       values,
+      loading,
+      handleDownloadClick,
       handleChange,
       handleCheckboxChange,
       onChangeSortTableRow,

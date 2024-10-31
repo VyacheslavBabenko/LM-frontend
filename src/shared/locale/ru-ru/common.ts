@@ -100,6 +100,7 @@ export const common = {
   showEntries: 'Показать записей',
   applyFilter: 'Применить фильтры',
   total: 'Всего',
+  totalBudget: 'Общий бюджет',
   elements: 'элементов',
 
   user: 'Пользователь',

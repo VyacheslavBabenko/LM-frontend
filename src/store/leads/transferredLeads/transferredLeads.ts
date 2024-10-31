@@ -24,6 +24,34 @@ export const fetchTransferredLeads = createAsyncThunk<FetchTransferredLeadsRespo
   },
 );
 
+export const downloadTransferredLeadsExcel = createAsyncThunk<void, FetchTransferredLeadsParams>(
+  'transferredLeads/downloadExcel',
+  async (params, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${domain}/api/leads/transferred-leads`, {
+        responseType: 'blob',
+        headers: {
+          'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        },
+        withCredentials: true,
+        params,
+      });
+
+      const blob = new Blob([response.data]);
+      console.log(blob);
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'leads.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 // Создаем слайс
 const transferredLeadsSlice = createSlice({
   name: 'transferredLeads',

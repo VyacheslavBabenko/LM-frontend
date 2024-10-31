@@ -35,8 +35,6 @@ const SelectFinder = function <TValue = string>({
               }));
               const checkHasActive = changedList.filter(item2 => item2.active);
               if (checkHasActive.length === 0) changedList[0].active = true;
-              console.log(changedList);
-              //   console.log(onChange(changedList));
               onChange(changedList);
               changeOpen(false);
               setSearch(null);

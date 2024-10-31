@@ -40,7 +40,6 @@ const FilterHeader = ({ itemsOnPage, onItemsOnPageChange, onSubmit, children }: 
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
     <form className={b({ isOpen })} onSubmit={handleSubmit} tabIndex={0} onKeyUp={handleKeyUp}>
       <div className={b('top')}>
         <div className={b('block', { clickable: true })} onClick={() => setIsOpen(!isOpen)}>

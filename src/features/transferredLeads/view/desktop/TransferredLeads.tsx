@@ -21,6 +21,8 @@ export const TransferredLeads = () => {
   const { leads, count, totalBudget } = useAppSelector(state => state.transferredLeads);
   const locale = useAppSelector(state => state.locale.common);
 
+  // const dispatch = useDispatch();
+
   const model = useTransferredLeadsModel();
   const config = useTransferredLeadsTableConfig();
 
@@ -34,7 +36,7 @@ export const TransferredLeads = () => {
     <div className={b('wrapper')}>
       <div className={b('top-buttons')}>
         <div className={b('button')}>
-          <Button color="hollow-blue">
+          <Button color="hollow-blue" onClick={model.inputState.handleDownloadClick}>
             <SVG className={b('button', 'icon')} svgProps={{ src: excelSVG }} />
             {locale.exportExcel}
           </Button>
@@ -55,7 +57,7 @@ export const TransferredLeads = () => {
                 // sort={model.inputState.values.sortTableRow}
                 // onChangeSort={model.inputState.onChangeSortTableRow}
               />
-              <SummBlock title="totalBalance" amount={totalBudget} />
+              <SummBlock amount={totalBudget} />
             </>
           )
         )}

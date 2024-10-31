@@ -19,6 +19,7 @@ export interface FetchTransferredLeadsParams {
   recipientID?: string;
   limit?: number;
   offset?: number;
+  excel?: boolean;
 }
 
 // Определяем тип возвращаемого значения и параметров

@@ -4,7 +4,7 @@ import { defaultItemsOnPage } from 'components/FilterHeader/data';
 
 import { initialAllUsersSort, useInstallmentItems, useLeadStatusItems } from './data';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useAppSelector';
-import { fetchTransferredLeads } from 'store/leads/transferredLeads/transferredLeads';
+import { downloadTransferredLeadsExcel, fetchTransferredLeads } from 'store/leads/transferredLeads/transferredLeads';
 import { countryItems, formatUsersToFinder, getNoneSelectItem } from 'features/transferLead/model/data';
 import { fetchUsers } from 'store/users/usersSlice';
 import { formatCompaniesToFinder } from 'features/auth/model/signUp/data';
@@ -65,7 +65,10 @@ const useModel = () => {
     }));
   }, [locale]);
 
-  const onChangeSortTableRow = useCallback(value => setValues(ps => ({ ...ps, sortTableRow: value })), []);
+  const onChangeSortTableRow = useCallback(
+    (value: typeof values.sortTableRow) => setValues(ps => ({ ...ps, sortTableRow: value })),
+    [],
+  );
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValues(prevValues => ({
@@ -116,19 +119,35 @@ const useModel = () => {
   );
 
   const onPageChanged = useCallback(
-    value =>
+    (value: typeof values.page) =>
       setValues(ps => ({
         ...ps,
         page: value,
       })),
     [],
   );
-  const onItemsOnPageChanged = useCallback(value => setValues(ps => ({ ...ps, itemsOnPage: value })), []);
+  const onItemsOnPageChanged = useCallback(
+    (value: typeof values.itemsOnPage) => setValues(ps => ({ ...ps, itemsOnPage: value })),
+    [],
+  );
+
+  const handleDownloadClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+
+      dispatch(
+        downloadTransferredLeadsExcel({
+          excel: true,
+        }),
+      );
+    },
+    [dispatch],
+  );
 
   const pageCount = Math.ceil(count / Number(values.itemsOnPage.filter(item => item.active)[0].value)) ?? 1;
 
   const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    e => {
       e.preventDefault();
       const finalItemsOnPage = values.itemsOnPage.filter(s => s.active).map(s => s.value)[0];
 
@@ -190,6 +209,7 @@ const useModel = () => {
       },
       inputState: {
         values,
+        handleDownloadClick,
         handleChange,
         handleCheckboxChange,
         onChangeSortTableRow,
@@ -212,6 +232,7 @@ const useModel = () => {
       count,
       values,
       loading,
+      handleDownloadClick,
       handleChange,
       handleCheckboxChange,
       onChangeSortTableRow,

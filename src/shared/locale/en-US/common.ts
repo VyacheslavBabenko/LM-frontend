@@ -94,6 +94,7 @@ export const common = {
   showEntries: 'Show records',
   applyFilter: 'Apply filters',
   total: 'Total',
+  totalBudget: 'Total budget',
   elements: 'elements',
 
   user: 'User',
