@@ -12,7 +12,6 @@ export type ITitleWithIcon = {
 const b = block('title-with-icon');
 
 export const TitleWithIcon: React.FC<ITitleWithIcon> = ({ icon, title }) => {
-  console.log('title: ', title);
   return (
     <div className={b()}>
       <SVG svgProps={{ src: icon }} className={b('image')} />

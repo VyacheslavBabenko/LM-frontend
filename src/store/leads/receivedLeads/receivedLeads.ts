@@ -3,7 +3,6 @@ import axios, { AxiosError } from 'axios';
 import { domain } from 'shared/constants';
 import { ReceivedLeadsState, FetchReceivedLeadsParams, FetchReceivedLeadsResponse } from './types';
 import { addNotify } from 'store/notify/notifySlice';
-import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 const initialState: ReceivedLeadsState = {
   leads: [],
@@ -14,6 +13,7 @@ const initialState: ReceivedLeadsState = {
     },
   },
   count: 0,
+  totalBudget: 0,
   loading: false,
   error: null,
   refetch: false,
