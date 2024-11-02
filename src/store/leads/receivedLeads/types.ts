@@ -4,6 +4,7 @@ export interface ReceivedLeadsState {
   loading: boolean;
   error: string | null;
   count: number;
+  totalBudget: number | null;
   refetch: boolean;
   modal: {
     statusModal: {
@@ -31,6 +32,7 @@ export interface FetchReceivedLeadsParams {
 export interface FetchReceivedLeadsResponse {
   leads: Lead[];
   count: number;
+  totalBudget: number;
 }
 
 export enum ELeadStatus {

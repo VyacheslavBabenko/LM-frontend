@@ -119,6 +119,7 @@ const receivedLeadsSlice = createSlice({
         state.loading = false;
         state.leads = action.payload.leads;
         state.count = action.payload.count;
+        state.totalBudget = action.payload.totalBudget;
       })
       .addCase(fetchReceivedLeads.rejected, (state, action) => {
         state.loading = false;

@@ -16,10 +16,11 @@ import Button from 'components/Button/desktop';
 import excelSVG from 'shared/img/excel.svg';
 import SVG from 'components/SVG';
 import Spinner from 'components/Spinner/desktop';
+import SummBlock from 'components/SummBlock/desktop/SummBlock';
 
 const b = block('received-leads');
 export const ReceivedLeads = () => {
-  const { leads, count } = useAppSelector(state => state.receivedLeads);
+  const { leads, count, totalBudget } = useAppSelector(state => state.receivedLeads);
   const locale = useAppSelector(state => state.locale.common);
   const model = useReceivedLeadsModel();
   const config = useReceivedLeadsTableConfig();
@@ -48,6 +49,7 @@ export const ReceivedLeads = () => {
                 // sort={model.inputState.values.sortTableRow}
                 // onChangeSort={model.inputState.onChangeSortTableRow}
               />
+              <SummBlock title={locale.totalBudget} amount={totalBudget} />
             </>
           )
         )}
