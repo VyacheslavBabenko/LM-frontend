@@ -57,7 +57,7 @@ export const TransferredLeads = () => {
                 // sort={model.inputState.values.sortTableRow}
                 // onChangeSort={model.inputState.onChangeSortTableRow}
               />
-              <SummBlock amount={totalBudget} />
+              <SummBlock title={locale.totalBudget} amount={totalBudget} />
             </>
           )
         )}

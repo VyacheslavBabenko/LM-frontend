@@ -199,7 +199,7 @@ export const common = {
   remove: 'Delete',
   registerDate: 'Registration date',
   control: 'Manage',
-  personalInfo: 'personal information',
+  personalInfo: 'Personal information',
   hierarchy: 'Hierarchy',
   blocking: 'Lock',
   accountSettings: 'Account setup',
