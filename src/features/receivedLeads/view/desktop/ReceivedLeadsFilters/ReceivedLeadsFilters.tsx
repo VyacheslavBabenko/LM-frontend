@@ -55,14 +55,14 @@ const ReceivedLeadsFilters: FC<IReceivedLeadsFilters> = ({ filterState }) => {
               <SelectFinder items={filterState.values.company} onChange={filterState.onChangeCompany} />
             </div>
           </div>
-        </div>
-        <div className={b('second-inputs')}>
           <div className={b('item')}>
             <div className={b('item-name')}>{locale.installment}</div>
             <div className={b('item-field')}>
               <SelectFinder items={filterState.values.installment} onChange={filterState.onChangeInstallment} />
             </div>
           </div>
+        </div>
+        <div className={b('second-inputs')}>
           <div className={b('item')}>
             <div className={b('item-name')}>{locale.status}</div>
             <div className={b('item-field')}>
